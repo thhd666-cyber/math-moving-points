@@ -381,42 +381,29 @@
                     \(5 : 10 = OD : 6\)<br>
                     \(1 : 2 = OD : 6 \Rightarrow 2 \times OD = 6 \Rightarrow OD = 3\)
                 </p>
+                <p>(2) 点Cを通り底面に平行な平面で球を切る切り口の面積</p>
                 <p>
-                    ここで求めた \(OD\) は、球の中心から接点C（までの水平距離ではなく、接点Cへの垂線の足までの距離）...ではなく、<br>
-                    接点Cから球の中心軸（AD）までの距離、つまり切り口の円の半径そのものです。<br>
-                    あるいは、以下のように考えます。<br>
-                    接点Cを通る水平面での切り口は円になります。<br>
-                    接点Cでの球の半径OCは母線ABと垂直です。<br>
-                    直角三角形AODにおいて、Oから母線ABに下ろした垂線がOC(=半径3)です。<br>
-                    求めたいのはCから回転軸ADまでの距離（切り口の半径 \(R\)）です。<br>
-                    \(\triangle ACO \sim \triangle ADB\) (直角と共通角)。<br>
-                    \(AC : AD = CO : DB\) ... これより、もっと単純に、<br>
-                    断面図において、CからADに垂線CHを下ろしたとき、CHが切り口の半径になります。<br>
-                    \(\triangle AHC \sim \triangle ADO\) ではなく、\(\triangle OCH \sim \triangle ABD\) (直角と角の利用)。<br>
-                    \(\triangle ABD\)の3辺比は \(3:4:5\) (\(6:8:10\)) です。<br>
-                    直角三角形OHCも \(3:4:5\) の比になります。<br>
-                    斜辺 \(OC=3\) (球の半径)。<br>
-                    \(HC : OC = 4 : 5 \Rightarrow HC : 3 = 4 : 5 \Rightarrow HC = \frac{12}{5}\)。<br>
-                    よって切り口の面積は \(\pi \times (\frac{12}{5})^2 = \frac{144}{25}\pi\)。
-                </p>
-                <p>
-                    ...と計算しましたが、もっと簡単な相似があります。<br>
-                    \(\triangle AOD\) (3:4:5) の中に相似な三角形を見つけます。<br>
-                    あるいは面積比を利用します。
-                </p>
-                <p>※訂正して整理します。<br>
                     <strong>【解法】</strong><br>
                     切り口の半径を \(x\) とします。<br>
-                    断面図（二等辺三角形）において、球の中心Oから母線ABへの垂線の足がCです（接点）。<br>
-                    Cから底面に平行に切るということは、Cから回転軸ADへ垂線CHを下ろしたときのCHの長さが半径 \(x\) です。<br>
-                    \(\triangle AB D \sim \triangle OCH\) が成り立ちます。<br>
-                    （\(\angle ADB = \angle OHC = 90^\circ\)、\(\angle BAD + \angle ABD = 90^\circ\)、\(\angle COH + \angle
-                    OCH = 90^\circ\)... 証明省略、相似比を利用）<br>
-                    \(\triangle OCH\) は3辺の比が \(3:4:5\) の直角三角形です（\(\triangle ABD\)と相似）。<br>
-                    斜辺 \(OC = 3\) (球の半径)。<br>
-                    \(CH : OC = DB : AB = 6 : 10 = 3 : 5\)。<br>
-                    \(x : 3 = 3 : 5 \Rightarrow 5x = 9 \Rightarrow x = \frac{9}{5}\)。<br>
-                    面積 \(S = \pi x^2 = \frac{81}{25}\pi\)。
+                    球の中心O, 接点C, 頂点Aを含む断面図（二等辺三角形）で考えます。<br>
+                    点Cは球と母線ABとの接点です。<br>
+                    点Cから底面に平行に切るということは、点Cから回転軸ADへ垂線CHを下ろしたときの、CHの長さが切り口の半径 \(x\) になります。
+                </p>
+                <p>
+                    ここで、\(\triangle ABD \sim \triangle OCH\) が成り立ちます。<br>
+                    （直角三角形で、\(\angle DAB\)（\(\angle COH\)）と接点の関係から導けます）<br>
+                    \(\triangle ABD\) の3辺の比は \(6:8:10 = 3:4:5\) です。<br>
+                    よって、これと相似な \(\triangle OCH\) も3辺の比は \(3:4:5\) になります。
+                </p>
+                <p>
+                    \(\triangle OCH\) において、斜辺は \(OC\)（球の半径）なので \(3\) です。<br>
+                    求めたい \(CH\)（半径 \(x\)）と斜辺 \(OC\) の比は \(3:5\) です（\(DB:AB\)に対応）。<br>
+                    \(x : 3 = 3 : 5\)<br>
+                    \(5x = 9 \Rightarrow x = \frac{9}{5}\)
+                </p>
+                <p>
+                    よって、切り口の面積 \(S\) は<br>
+                    \(S = \pi x^2 = \pi \times (\frac{9}{5})^2 = \frac{81}{25}\pi\)
                 </p>
                 <span class="answer">答え: \(\frac{81}{25}\pi \text{cm}^2\)</span>
             </div>

@@ -4,88 +4,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>動点・関数の問題 解説メニュー</title>
+    <title>数学解説サイト</title>
     <style>
         body {
             font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
-            background-color: #f0f2f5;
+            line-height: 1.6;
             color: #333;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f0f4f8;
         }
 
-        .container {
-            background-color: white;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            max-width: 600px;
-            width: 90%;
+        header {
             text-align: center;
+            padding: 40px 0;
+            background-color: #34495e;
+            color: white;
+            border-radius: 8px;
+            margin-bottom: 30px;
         }
 
         h1 {
-            color: #2c3e50;
-            margin-bottom: 30px;
-            font-size: 1.8em;
+            margin: 0;
+            font-size: 2.5em;
         }
 
-        .link-card {
-            display: block;
-            background-color: #3498db;
-            color: white;
-            text-decoration: none;
-            padding: 20px;
-            margin: 15px 0;
-            border-radius: 8px;
-            transition: transform 0.2s, background-color 0.2s;
-            font-weight: bold;
+        p.subtitle {
+            margin-top: 10px;
             font-size: 1.2em;
+            color: #bdc3c7;
         }
 
-        .link-card:hover {
-            background-color: #2980b9;
-            transform: translateY(-2px);
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
         }
 
-        .link-desc {
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+            text-decoration: none;
+            color: inherit;
             display: block;
-            font-size: 0.8em;
-            margin-top: 5px;
-            font-weight: normal;
-            opacity: 0.9;
         }
 
-        .footer {
-            margin-top: 30px;
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .card h2 {
+            color: #2980b9;
+            margin-top: 0;
+        }
+
+        .card p {
+            color: #7f8c8d;
+        }
+
+        .tag {
+            display: inline-block;
+            background-color: #eaf2f8;
+            color: #2980b9;
+            padding: 3px 10px;
+            border-radius: 15px;
             font-size: 0.8em;
-            color: #777;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            color: #95a5a6;
+            font-size: 0.9em;
         }
     </style>
 </head>
 
 <body>
+
+    <header>
+        <h1>数学 解説サイト</h1>
+        <p class="subtitle">動点・関数・空間図形をマスターしよう！</p>
+    </header>
+
     <div class="container">
-        <h1>数学 解説コンテンツ</h1>
-        <p>確認したい問題集を選んでください</p>
-
-        <a href="solution.html" class="link-card">
-            動点・空間の問題
-            <span class="link-desc">正方形上の動点、直方体の切断、球など</span>
+        <!-- Card 1 -->
+        <a href="solution.html" class="card">
+            <h2>動点・空間の問題</h2>
+            <div>
+                <span class="tag">動点</span>
+                <span class="tag">2次方程式</span>
+                <span class="tag">空間図形</span>
+            </div>
+            <p>
+                「動点・空間の問題.pdf」の解説です。<br>
+                正方形上の動点、制動距離、立体の切断、内接球などを詳しく解説しています。
+            </p>
         </a>
 
-        <a href="solution_moving_points.html" class="link-card">
-            動点の問題（関数・グラフ）
-            <span class="link-desc">1次関数と動点、反比例、面積の二等分など</span>
+        <!-- Card 2 -->
+        <a href="solution_moving_points.html" class="card">
+            <h2>動点の問題（関数・グラフ）</h2>
+            <div>
+                <span class="tag">1次関数</span>
+                <span class="tag">反比例</span>
+                <span class="tag">グラフ</span>
+            </div>
+            <p>
+                「動点の問題.pdf」の解説です。<br>
+                関数グラフ上の動点、等積変形、面積の二等分などをステップバイステップで解説します。
+            </p>
         </a>
-
-        <div class="footer">
-            &copy; 2026 Mathematics Study Support
-        </div>
     </div>
+
+    <footer>
+        <p>&copy; 2026 数学解説サイト Project</p>
+    </footer>
+
 </body>
 
 </html>

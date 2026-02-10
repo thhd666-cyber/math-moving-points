@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>動点・空間の問題 解説</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: #2c3e50;
+        }
+
+        h1 {
+            text-align: center;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        .section {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .problem-box {
+            background-color: #e8f4fd;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .example-box {
+            background-color: #eafaf1;
+            border-left: 5px solid #2ecc71;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .question {
+            font-weight: bold;
+            margin-bottom: 10px;
+            margin-top: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .solution-toggle {
+            background-color: #34495e;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9em;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .solution-toggle:hover {
+            background-color: #2c3e50;
+        }
+
+        .solution-content {
+            display: none;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed #ddd;
+        }
+
+        .solution-content.show {
+            display: block;
+        }
+
+        .answer {
+            color: #e74c3c;
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+
+        .page-header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 15px;
+            font-size: 0.9em;
+        }
+
+        .calc-step {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: monospace;
+            margin: 5px 0;
+        }
+    </style>
+    <script>
+        function toggleSolution(id) {
+            var content = document.getElementById('solution-' + id);
+            if (content.classList.contains('show')) {
+                content.classList.remove('show');
+            } else {
+                content.classList.add('show');
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+    <h1>動点・空間の問題 解説・解答</h1>
+
+    <!-- Page 1 -->
+    <div class="section">
+        <span class="page-header">Page 1</span>
+        <h2>ポイント2：点の移動と関数</h2>
+
+        <div class="example-box">
+            <h3>【例題】正方形上の動点</h3>
+            <p>1辺2cmの正方形ABCD。P(A→D, 1cm/s), Q(A→B→A, 1cm/s)。x秒後の△APQの面積y。</p>
+            <button class="solution-toggle" onclick="toggleSolution('ex1')">解答を表示</button>
+            <div id="solution-ex1" class="solution-content">
+                <p><strong>(1) \(0 \leqq x \leqq 2\) のとき</strong> (Q: A→B)</p>
+                <p>\(AP=x, AQ=x\)</p>
+                <p>\(y = \frac{1}{2}x^2\)</p>
+                <hr>
+                <p><strong>(2) \(2 \leqq x \leqq 4\) のとき</strong> (Q: B→A)</p>
+                <p>\(AP=2\) (Dで停止), \(AQ=4-x\)</p>
+                <p>\(y = \frac{1}{2} \times 2 \times (4-x) = 4-x\)</p>
+            </div>
+        </div>
+
+        <div class="problem-box">
+            <h3>【確認問題 2】</h3>
+            <p>1辺4cmの正方形。P(A→B→C→D, 2cm/s), Q(A→D, 1cm/s)。</p>
+
+            <div class="question">(1) x=1のときのy</div>
+            <button class="solution-toggle" onclick="toggleSolution('q2-1')">解答を表示</button>
+            <div id="solution-q2-1" class="solution-content">
+                <p>1秒後: PはAB中点(2cm), QはAD上(1cm)</p>
+                <p>\(y = \frac{1}{2} \times 1 \times 2 = 1\)</p>
+                <span class="answer">答え: 1</span>
+            </div>
+
+            <div class="question">(2) 各区間の式</div>
+            <button class="solution-toggle" onclick="toggleSolution('q2-2')">解答を表示</button>
+            <div id="solution-q2-2" class="solution-content">
+                <p>① AB上 (\(0 \leqq x \leqq 2\)): \(y = x^2\)</p>
+                <p>② BC上 (\(2 \leqq x \leqq 4\)): \(y = 2x\) (高さ4一定)</p>
+                <p>③ CD上 (\(4 \leqq x \leqq 6\)): \(y = -4x + 24\)</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 2 -->
+    <div class="section">
+        <span class="page-header">Page 2</span>
+        <h2>練成問題：2次関数の利用</h2>
+
+        <div class="problem-box">
+            <h3>【問題 1】制動距離</h3>
+            <p>時速80kmで400m進んで止まる。距離yは速さxの2乗に比例。</p>
+            <button class="solution-toggle" onclick="toggleSolution('p2-1')">解答を表示</button>
+            <div id="solution-p2-1" class="solution-content">
+                <p>① \(y = \frac{1}{16}x^2\)</p>
+                <p>② 時速60km: \(y = 225\text{m}\)</p>
+                <p>③ 625m止まり: 時速100km</p>
+            </div>
+        </div>
+
+        <div class="problem-box">
+            <h3>【問題 2】台形上の動点</h3>
+            <p>台形ABCD (\(\angle A=\angle B=90^\circ\)), AB=6, BC=10, AD=8。<br>
+                P(A→B→C, 2cm/s), Q(A→D, 1cm/s)。</p>
+            <button class="solution-toggle" onclick="toggleSolution('p2-2')">解答を表示</button>
+            <div id="solution-p2-2" class="solution-content">
+                <p><strong>(1) 2秒後の面積</strong></p>
+                <p>Pは4cm進む(AB上)。Qは2cm進む(AD上)。</p>
+                <p>\(\triangle APQ = \frac{1}{2} \times 2 \times 4 = 4\)</p>
+                <span class="answer">答え: \(4 \text{cm}^2\)</span>
+
+                <hr>
+                <p><strong>(2) 面積yをxの式で</strong></p>
+                <p>① \(0 \leqq x \leqq 3\) (PはAB上)</p>
+                <p>\(AP=2x, AQ=x\) → \(y = \frac{1}{2} \cdot x \cdot 2x = x^2\)</p>
+                <p>② \(3 \leqq x \leqq 5\) (PはBC上, QはAD途中)</p>
+                <p>注：問題文のグラフ目盛り等のヒントから、PがCに着くまで(x=8)を考える。</p>
+                <p>QはAD上(\(AQ=x\))。PはBC上。高さはAB=6で一定。</p>
+                <p>\(y = \frac{1}{2} \cdot x \cdot 6 = 3x\)</p>
+                <p>※QがDに着くのは8秒後(\(AD=8 \div 1\))。PがCに着くのも8秒後(\((6+10) \div 2 = 8\))。</p>
+                <p>なので、\(3 \leqq x \leqq 8\) で \(y=3x\)。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 3 -->
+    <div class="section">
+        <span class="page-header">Page 3</span>
+        <h2>ポイント1：立体図形と三平方の定理</h2>
+
+        <div class="problem-box">
+            <h3>【確認問題 1】正四面体の高さと体積</h3>
+            <p>1辺2cmの正四面体OABC。</p>
+            <button class="solution-toggle" onclick="toggleSolution('p3-1')">解答を表示</button>
+            <div id="solution-p3-1" class="solution-content">
+                <p>(1) AMの長さ: 正三角形の高さ \(\sqrt{3}\) cm</p>
+                <p>(2) 高さOH: 重心HはAMを2:1に内分 → \(AH = \frac{2\sqrt{3}}{3}\)。<br>
+                    \(OH = \sqrt{2^2 - AH^2} = \frac{2\sqrt{6}}{3}\) cm</p>
+                <p>(3) 体積: \(\frac{2\sqrt{2}}{3} \text{cm}^3\)</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 4 -->
+    <div class="section">
+        <span class="page-header">Page 4</span>
+        <h2>ポイント3：点の移動（2次方程式）</h2>
+        <div class="problem-box">
+            <h3>【確認問題 3】</h3>
+            <p>1辺12cmの正方形。P(A→B, 2cm/s), Q(A→D, 3cm/s)。</p>
+            <button class="solution-toggle" onclick="toggleSolution('p4-1')">解答を表示</button>
+            <div id="solution-p4-1" class="solution-content">
+                <p>(1) 面積y: \(y = \frac{1}{2} \cdot 2x \cdot 3x = 3x^2\)</p>
+                <p>(2) 面積が正方形の1/4 (36cm²)になる時間</p>
+                <p>\(3x^2 = 36 \Rightarrow x^2 = 12 \Rightarrow x = 2\sqrt{3}\)</p>
+                <span class="answer">答え: \(2\sqrt{3}\) 秒後</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 5 -->
+    <div class="section">
+        <span class="page-header">Page 5</span>
+        <h2>ポイント1：点と平面の距離（体積法）</h2>
+
+        <div class="example-box">
+            <h3>【例題】直方体と三角錐</h3>
+            <p>AB=AD=6, AE=3の直方体。Aと面BDEの距離hを求める。</p>
+            <button class="solution-toggle" onclick="toggleSolution('ex5')">解説を表示</button>
+            <div id="solution-ex5" class="solution-content">
+                <p><strong>指針（体積法）：</strong> 三角錐A-BDEの体積を2通りで表す。</p>
+                <p>1. 底面をABD, 高さをAEとする。<br>
+                    \(V = \frac{1}{3} \times \triangle ABD \times AE = \frac{1}{3} \times 18 \times 3 = 18\)</p>
+                <p>2. 底面をBDE, 高さをhとする。<br>
+                    \(\triangle BDE\) の各辺は三平方で求める (\(6\sqrt{2}, 3\sqrt{5}, 3\sqrt{5}\))。<br>
+                    二等辺三角形の高さ等を求めて面積算出 → \(9\sqrt{6}\)。<br>
+                    \(18 = \frac{1}{3} \times 9\sqrt{6} \times h\)</p>
+                <p>これを解いて \(h = \sqrt{6}\)</p>
+            </div>
+        </div>
+
+        <div class="problem-box">
+            <h3>【確認問題 1】立方体の切断</h3>
+            <p>(1) 1辺6cmの立方体。3点A, C, Fを通る平面（正三角形）。</p>
+
+            <div class="question">① △ACFの面積</div>
+            <button class="solution-toggle" onclick="toggleSolution('p5-q1-1')">解答を表示</button>
+            <div id="solution-p5-q1-1" class="solution-content">
+                <p>AC, CF, FAはすべて正方形の対角線なので長さは \(6\sqrt{2}\)。<br>
+                    1辺 \(6\sqrt{2}\) の正三角形の面積。</p>
+                <p>高さ\(= \frac{\sqrt{3}}{2} \times 6\sqrt{2} = 3\sqrt{6}\)</p>
+                <p>面積\(= \frac{1}{2} \times 6\sqrt{2} \times 3\sqrt{6} = 18\sqrt{3}\)</p>
+                <span class="answer">答え: \(18\sqrt{3} \text{cm}^2\)</span>
+            </div>
+
+            <div class="question">② 三角錐 B-ACF の体積</div>
+            <button class="solution-toggle" onclick="toggleSolution('p5-q1-2')">解答を表示</button>
+            <div id="solution-p5-q1-2" class="solution-content">
+                <p>底面を△ABC（直角二等辺三角形）、高さをBF（=6）と見るのが簡単。</p>
+                <p>\(\triangle ABC = 18\)。</p>
+                <p>\(V = \frac{1}{3} \times 18 \times 6 = 36\)</p>
+                <span class="answer">答え: \(36 \text{cm}^3\)</span>
+            </div>
+
+            <div class="question">③ 点Bから面ACFに下ろした垂線の長さ</div>
+            <button class="solution-toggle" onclick="toggleSolution('p5-q1-3')">解答を表示</button>
+            <div id="solution-p5-q1-3" class="solution-content">
+                <p>体積法を使う。\(V = \frac{1}{3} \times \triangle ACF \times h\)</p>
+                <p>\(36 = \frac{1}{3} \times 18\sqrt{3} \times h\)</p>
+                <p>\(36 = 6\sqrt{3}h\)</p>
+                <p>\(h = \frac{6}{\sqrt{3}} = 2\sqrt{3}\)</p>
+                <span class="answer">答え: \(2\sqrt{3} \text{cm}\)</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 6 -->
+    <div class="section">
+        <span class="page-header">Page 6</span>
+        <h2>学習2：動点と関数（グラフ作成）</h2>
+
+        <div class="problem-box">
+            <h3>【問題】正方形と2点P, Q</h3>
+            <p>1辺4cmの正方形。P(A→B→C, 2cm/s)。Q(B→C, 1cm/s)。<br>
+                P, Q同時出発。</p>
+
+            <div class="question">(1) xとyの関係を表すグラフ</div>
+            <button class="solution-toggle" onclick="toggleSolution('p6-1')">解説を表示</button>
+            <div id="solution-p6-1" class="solution-content">
+                <p>
+                    <strong>\(0 \leqq x \leqq 2\) のとき (P: AB上, Q: BC上)</strong><br>
+                    PはAから離れる(\(AP = 2x\))。<br>
+                    QはBから離れる(\(BQ = x\))。<br>
+                    底辺BQ=x, 高さBP=2x... ではなく、底辺BQ, 高さはAB(PのAB上の位置)なので...
+                </p>
+                <p><em>訂正：</em> 問題図を見るとPはA→B→C。QはB→C。<br>
+                    \(x \leqq 2\) のとき:<br>
+                    \(\triangle APQ\) という形ではなく、底辺をどう見るか。<br>
+                    図を確認。底辺はBQ(=x)。高さはPからBCへの距離(= \(4 - AP\) ではなく、PはAB上なので、BCへの距離は \(PB = 4-2x\)？
+                    いや、図を見るとPはAからBへ向かう。<br>
+                    Aを出発してBを通ってCへ。<br>
+                    \(0 \leqq x \leqq 2\)のとき、PはAB上。\(AP=2x\)。<br>
+                    QはBC上。\(BQ=x\)。<br>
+                    \(\triangle APQ\) ? いえ、問題は「\(\triangle APQ\)」の面積。<br>
+                    ※このパターンは底辺・高さの関係が複雑。座標で考えると良い。<br>
+                    Bを原点(0,0)、A(0,4), C(4,0)とすると、<br>
+                    Pの位置: (0, 4-2x)<br>
+                    Qの位置: (x, 0)<br>
+                    Aの位置: (0, 4)<br>
+                    3点 (0,4), (0, 4-2x), (x, 0) で囲まれる三角形。<br>
+                    底辺をy軸上の線分APと見ると、長さは \(2x\)。高さはQのx座標 \(x\)。<br>
+                    \(\Rightarrow y = \frac{1}{2} \cdot 2x \cdot x = x^2\)
+                </p>
+                <p>
+                    <strong>\(2 \leqq x \leqq 4\) のとき (P: BC上, Q: BC上)</strong><br>
+                    PはBを通過しCへ。QもCへ。<br>
+                    両方ともBC辺上に乗ってしまうので、一直線上になり三角形はできない？<br>
+                    問題文確認：「PはAを出発、QはBを出発」。<br>
+                    Pの速度2cm/s, Qの速度1cm/s。<br>
+                    2秒後：PはB、QはBから2cmの点。←違い、Qは1cm/sなので2cm地点。<br>
+                    式: \(y = 0\) ? いえ、問題例のグラフは上に凸の山形になっている。<br>
+                    問題文再読：\( \triangle APQ \) <br>
+                    2秒後以降、PはBC上にある。QもBC上にある。<br>
+                    3点 A, P, Q。<br>
+                    Aは正方形の左上頂点。<br>
+                    P, Qは底辺BC上。<br>
+                    底辺を線分PQの長さと考え、高さをAB(=4)とする。<br>
+                    Pの位置(Bからの距離) = \(2(x-2)\) ? いえ、総移動距離 \(2x\)。AB=4なので、BP = \(2x - 4\)。<br>
+                    Qの位置(Bからの距離) = \(x\)。<br>
+                    PQの長さ = \(| (2x-4) - x | = |x-4| = 4-x\)
+                    (Qの方が先行しているか確認。t=3でPは6cm移動=BC上2cm地点。Qは3cm地点。Qが先。t=4でPは8cm(C), Qは4cm(C)。同時着)<br>
+                    よって底辺 \(PQ = 4-x\)。<br>
+                    面積 \(y = \frac{1}{2} \times 4 \times (4-x) = -2x + 8\)。
+                </p>
+                <p><strong>グラフ：</strong></p>
+                <p>\(0 \to 2\)秒：\(y=x^2\) (放物線を描いて (2,4) へ)<br>
+                    \(2 \to 4\)秒：\(y=-2x+8\) (直線で (4,0) へ)</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 7 -->
+    <div class="section">
+        <span class="page-header">Page 7</span>
+        <h2>空間図形の切断・球</h2>
+
+        <div class="problem-box">
+            <h3>【問題 4】円錐と内接球</h3>
+            <p>底面直径12cm(半径6), 高さ8cmの円錐。球Oが内接。</p>
+            <button class="solution-toggle" onclick="toggleSolution('p7-4')">解答を表示</button>
+            <div id="solution-p7-4" class="solution-content">
+                <p>(1) 球の半径 r</p>
+                <p>断面図（二等辺三角形）で考える。<br>
+                    底辺BC=12, 高さAD=8。母線AB=\(\sqrt{6^2+8^2}=10\)。<br>
+                    内接円の半径公式（面積利用）を使う。<br>
+                    \(\triangle ABC\)の面積 \(S = \frac{1}{2} \cdot 12 \cdot 8 = 48\)。<br>
+                    \(S = \frac{1}{2}r(AB+BC+CA) = \frac{1}{2}r(10+12+10) = 16r\)。<br>
+                    \(48 = 16r \Rightarrow r = 3\)。</p>
+                <span class="answer">答え: 3 cm</span>
+
+                <p>(2) 点Cを通り底面に平行な平面で球を切る切り口の面積</p>
+                <p>※「点C」の位置に注意。図ではCは円錐の底面の端。底面に平行で球を切る？<br>
+                    通常の円錐の頂点ではなく底面の点Cを通る水平な面だと、球の下端（ほぼ接点）を切るだけでは？<br>
+                    解説文をよく見ると「球と母線の接点をCとする」等の別定義があるかもしれない。<br>
+                    → 問題文「底面の円の半径をPB...」図を見ると、Cは球と母線の接点に見える。<br>
+                    相似比を使って解く。<br>
+                    \(\triangle AOD \sim \triangle ABC\) (直角三角形の相似)。<br>
+                    \(AO : AB = OD : BC \Rightarrow (8-r) : 10 = r : 6\)。<br>
+                    \(6(8-r) = 10r \Rightarrow 48 - 6r = 10r \Rightarrow 16r = 48 \Rightarrow r=3\)。(検算OK)<br>
+
+                    切り口の半径：接点Cを通る水平面。<br>
+                    球の中心Oから接点Cまでの高さ関係を考える。<br>
+                    接点Cの高さは... 相似で求める。<br>
+                    球の中心から断面までの距離 \(d\) がわかれば、切り口半径 \(R = \sqrt{r^2 - d^2}\)。
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 8 -->
+    <div class="section">
+        <span class="page-header">Page 8</span>
+        <h2>2次方程式の利用</h2>
+
+        <div class="problem-box">
+            <h3>【問題】長方形の土地と道路</h3>
+            <p>縦10m, 横14m。同じ幅の道路を作る。残りの畑が96m²。</p>
+            <button class="solution-toggle" onclick="toggleSolution('p8-1')">解答を表示</button>
+            <div id="solution-p8-1" class="solution-content">
+                <p>道路幅をxとする。畑を寄せて考える。<br>
+                    \((10-x)(14-x) = 96\)<br>
+                    \(140 - 24x + x^2 = 96\)<br>
+                    \(x^2 - 24x + 44 = 0\)<br>
+                    \((x-2)(x-22) = 0\)<br>
+                    \(0 < x < 10\) より、\(x=2\)。</p>
+                        <span class="answer">答え: 2m</span>
+            </div>
+        </div>
+
+        <div class="problem-box">
+            <h3>【問題 12】五角形の面積</h3>
+            <p>長方形ABCD (AB=4, BC=12)。<br>
+                P(A→D, 3cm/s), Q(A→C, 1cm/s・同時出発)。<br>
+                五角形ABCQPの面積が \(\frac{87}{2} \text{cm}^2\) になる時間。</p>
+            <button class="solution-toggle" onclick="toggleSolution('p8-12')">解答を表示</button>
+            <div id="solution-p8-12" class="solution-content">
+                <p>五角形の面積を直接求めるのは難しいので、「長方形 - (\(\triangle PDQ\)? いや点Cへ向かう)」<br>
+                    図を確認。Qは辺CD上をDまで動く（A→Dとあるが図はCからD？ 問題文「同時にCを出発し」）。<br>
+                    <strong>訂正：</strong> 問題文「点Qは...同時にCを出発し...辺CD上をDまで動く」。<br>
+                    よし。<br>
+                    五角形ABCQP = 長方形 - \(\triangle PDQ\)。<br>
+                    \(t\)秒後:<br>
+                    \(AP = 3t\) → \(PD = 12 - 3t\)<br>
+                    \(CQ = 1t\) → \(DQ = 4 - t\)<br>
+                    \(\triangle PDQ = \frac{1}{2}(12-3t)(4-t)\)。<br>
+                    長方形面積 = \(4 \times 12 = 48\)。<br>
+                    方程式：<br>
+                    \(48 - \frac{1}{2}(12-3t)(4-t) = \frac{87}{2}\)<br>
+                    両辺2倍：\(96 - (12-3t)(4-t) = 87\)<br>
+                    \((12-3t)(4-t) = 9\)<br>
+                    \(3(4-t)(4-t) = 9\)<br>
+                    \(3(4-t)^2 = 9\)<br>
+                    \((4-t)^2 = 3\)<br>
+                    \(4-t = \pm\sqrt{3}\)<br>
+                    \(t = 4 \pm \sqrt{3}\)。<br>
+                    範囲確認：PはDまで(12/3=4秒)。QはDまで(4/1=4秒)。\(0 \leqq t \leqq 4\)。<br>
+                    \(4+\sqrt{3}\) は範囲外。<br>
+                    よって \(t = 4 - \sqrt{3}\)。
+                </p>
+                <span class="answer">答え: \(4 - \sqrt{3}\) 秒後</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 9 -->
+    <div class="section">
+        <span class="page-header">Page 9</span>
+        <h2>三平方の定理と空間図形（応用）</h2>
+
+        <div class="problem-box">
+            <h3>【問題 19】正四角錐と内接球</h3>
+            <p>底面正方形(4cm), 他の辺 \(2\sqrt{10}\)cm。球Oが内接。</p>
+            <button class="solution-toggle" onclick="toggleSolution('p9-19')">解答を表示</button>
+            <div id="solution-p9-19" class="solution-content">
+                <p>高さの計算：<br>
+                    底面対角線 \(4\sqrt{2}\) → 半分 \(2\sqrt{2}\)。<br>
+                    高さ \(h = \sqrt{ (2\sqrt{10})^2 - (2\sqrt{2})^2 } = \sqrt{40-8} = \sqrt{32} = 4\sqrt{2}\)。</p>
+                <p>体積：<br>
+                    \(V = \frac{1}{3} \times 16 \times 4\sqrt{2} = \frac{64\sqrt{2}}{3}\)。</p>
+                <p>内接球の半径 \(r\)：<br>
+                    表面積 \(S\) を利用して \(V = \frac{1}{3}Sr\) で求めるか、断面図を利用。<br>
+                    断面図（対角面）で考えると球の大円にはならない（正四角錐の場合、側面の高さを使う）。<br>
+                    側面の高さ（スラントハイト）：底辺4の中点へ引いた線。<br>
+                    斜高 \(l = \sqrt{ (2\sqrt{10})^2 - 2^2 } = \sqrt{40-4} = 6\)。<br>
+                    表面積 \(S = 16 + 4 \times (\frac{1}{2} \cdot 4 \cdot 6) = 16 + 48 = 64\)。<br>
+                    \(V = \frac{1}{3}Sr \Rightarrow \frac{64\sqrt{2}}{3} = \frac{1}{3} \cdot 64 \cdot r\)。<br>
+                    \(\Rightarrow \sqrt{2} = r\)。</p>
+                <span class="answer">答え: 半径 \(\sqrt{2}\) cm</span>
+            </div>
+        </div>
+
+        <div class="problem-box">
+            <h3>【問題 22】立方体と球接</h3>
+            <p>1辺6cm立方体。内部に半径等の球S, T。互いに接し、3面に接する。</p>
+            <button class="solution-toggle" onclick="toggleSolution('p9-22')">解答を表示</button>
+            <div id="solution-p9-22" class="solution-content">
+                <p>球の半径を \(r\) ．中心座標で考える。<br>
+                    Sの中心 \((r, r, r)\), Tの中心 \((6-r, 6-r, 6-r)\)。<br>
+                    2球が接する \(\Leftrightarrow\) 中心間距離 \(d = r + r = 2r\)。<br>
+                    \(d^2 = (6-r-r)^2 + (6-r-r)^2 + (6-r-r)^2 = 3(6-2r)^2\)。<br>
+                    よって \((2r)^2 = 3(6-2r)^2\)。<br>
+                    \(4r^2 = 3(36 - 24r + 4r^2)\)<br>
+                    \(4r^2 = 108 - 72r + 12r^2\)<br>
+                    \(8r^2 - 72r + 108 = 0\)<br>
+                    \(2r^2 - 18r + 27 = 0\)<br>
+                    解の公式: \(r = \frac{18 \pm \sqrt{324 - 216}}{4} = \frac{18 \pm \sqrt{108}}{4} = \frac{18 \pm
+                    6\sqrt{3}}{4} = \frac{9 \pm 3\sqrt{3}}{2}\)。<br>
+                    \(0 < r < 3\) (中心が重ならない、かつ立方体内) なので、マイナスの方。<br>
+                        \(r = \frac{9 - 3\sqrt{3}}{2}\)。</p>
+                <span class="answer">答え: \(\frac{9 - 3\sqrt{3}}{2}\) cm</span>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

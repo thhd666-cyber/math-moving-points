@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>動点の問題（関数・グラフ） 解説</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: #2c3e50;
+        }
+
+        h1 {
+            text-align: center;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        .section {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .problem-box {
+            background-color: #e8f4fd;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .question {
+            font-weight: bold;
+            margin-bottom: 10px;
+            margin-top: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .solution-toggle {
+            background-color: #34495e;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9em;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .solution-toggle:hover {
+            background-color: #2c3e50;
+        }
+
+        .solution-content {
+            display: none;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed #ddd;
+        }
+
+        .solution-content.show {
+            display: block;
+        }
+
+        .answer {
+            color: #e74c3c;
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+
+        .page-header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 15px;
+            font-size: 0.9em;
+        }
+    </style>
+    <script>
+        function toggleSolution(id) {
+            var content = document.getElementById('solution-' + id);
+            if (content.classList.contains('show')) {
+                content.classList.remove('show');
+            } else {
+                content.classList.add('show');
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+    <h1>動点の問題（関数・グラフ） 解説・解答</h1>
+
+    <div class="section">
+        <span class="page-header">Page 1</span>
+        <h2>1次関数・反比例と動点</h2>
+
+        <div class="problem-box">
+            <h3>【問題 8】反比例と面積</h3>
+            <p>
+                ① \(y=mx\), ② \(y=\frac{2}{x}\) (\(x>0\))。<br>
+                交点Aのx座標は2。
+            </p>
+
+            <div class="question">(1) mの値を求めなさい。</div>
+            <button class="solution-toggle" onclick="toggleSolution('p8-1')">解答を表示</button>
+            <div id="solution-p8-1" class="solution-content">
+                <p>点Aは曲線②上の点なので、\(x=2\) を代入。<br>
+                    \(y = \frac{2}{2} = 1\)。よって A(2, 1)。</p>
+                <p>点Aは直線①上の点でもあるので、\(1 = 2m \Rightarrow m = \frac{1}{2}\)。</p>
+                <span class="answer">答え: \(m = \frac{1}{2}\)</span>
+            </div>
+
+            <div class="question">(2) 点Pの移動と面積S</div>
+            <button class="solution-toggle" onclick="toggleSolution('p8-2')">解答を表示</button>
+            <div id="solution-p8-2" class="solution-content">
+                <p>点Pは原点Oを出発し、Aまで①上、Aからは②上を動く。<br>
+                    Pからx軸への垂線PQ。\(P(t, y)\) とすると、\(\triangle OPQ\) の底辺は t、高さは y。</p>
+                <p><strong>① \(0 \leqq t \leqq 2\) のとき</strong> (Pは \(y=\frac{1}{2}x\) 上)<br>
+                    \(S = \frac{1}{2} \times t \times \frac{1}{2}t = \frac{1}{4}t^2\)。
+                </p>
+                <p><strong>② \(t \geqq 2\) のとき</strong> (Pは \(y=\frac{2}{x}\) 上)<br>
+                    \(S = \frac{1}{2} \times t \times \frac{2}{t} = 1\)。
+                </p>
+                <span class="answer">答え:<br>
+                    \(0 \leqq t \leqq 2\) のとき \(S = \frac{1}{4}t^2\)<br>
+                    \(t \geqq 2\) のとき \(S = 1\)</span>
+            </div>
+
+            <div class="question">(3) 面積の等しい三角形（等積変形）</div>
+            <button class="solution-toggle" onclick="toggleSolution('p8-3')">解答を表示</button>
+            <div id="solution-p8-3" class="solution-content">
+                <p>Bは②上の点, x座標3。\(y=\frac{2}{3}\)。B(3, \(\frac{2}{3}\))。<br>
+                    Cはx軸上の点 (\(x>0\))。\(\triangle OAB = \triangle OAC\) となるCのx座標。</p>
+                <p>まず \(\triangle OAB\) の面積を求める。<br>
+                    座標法（公式）または長方形から引く方法で計算。<br>
+                    \(O(0,0), A(2,1), B(3, \frac{2}{3})\)。<br>
+                    \(S = \frac{1}{2} |2 \times \frac{2}{3} - 1 \times 3| = \frac{1}{2} |\frac{4}{3} - 3| = \frac{1}{2}
+                    |-\frac{5}{3}| = \frac{5}{6}\)。
+                </p>
+                <p>\(\triangle OAC\) の面積。\(\triangle OAC\) は底辺OC, 高さAのy座標(=1)。<br>
+                    \(S = \frac{1}{2} \times x_c \times 1 = \frac{x_c}{2}\)。
+                </p>
+                <p>\(\frac{x_c}{2} = \frac{5}{6} \Rightarrow x_c = \frac{5}{3}\)。</p>
+                <span class="answer">答え: \( \frac{5}{3} \)</span>
+            </div>
+        </div>
+
+        <div class="problem-box">
+            <h3>【問題 1】3直線の交点</h3>
+            <div class="question">(1) 3直線が1点で交わるとき</div>
+            <button class="solution-toggle" onclick="toggleSolution('p1-1')">解答を表示</button>
+            <div id="solution-p1-1" class="solution-content">
+                <p>グラフより、\(l: y=\frac{1}{2}x+2\) ((-4,0), (0,2)を通る), \(m: y=-x+5\) ((0,5), (5,0)を通る)。<br>
+                    交点: \(\frac{1}{2}x+2 = -x+5 \Rightarrow \frac{3}{2}x=3 \Rightarrow x=2\)。<br>
+                    \(y = -2+5=3\)。交点は(2,3)。</p>
+                <p>\(n: y=ax-1\) がここを通る。<br>
+                    \(3 = 2a - 1 \Rightarrow 2a=4 \Rightarrow a=2\)。</p>
+                <span class="answer">答え: \(a=2\)</span>
+            </div>
+
+            <div class="question">(2) 三角形ができない条件</div>
+            <button class="solution-toggle" onclick="toggleSolution('p1-2')">解答を表示</button>
+            <div id="solution-p1-2" class="solution-content">
+                <p>① 3直線が1点で交わる場合： \(a=2\)。<br>
+                    ② \(n // l\) (傾きが等しい)： \(a=\frac{1}{2}\)。<br>
+                    ③ \(n // m\) (傾きが等しい)： \(a=-1\)。</p>
+                <span class="answer">答え: \(a = 2, \frac{1}{2}, -1\)</span>
+            </div>
+        </div>
+
+        <div class="problem-box">
+            <h3>【問題 2】2つの動点と直線</h3>
+            <p>P(4, 0)出発, \(x=4\)上を上へ(1cm/s)。<br>
+                Q(0, 0)出発, y軸上を上へ(2cm/s)。<br>
+                直線 \(l\) がP, Qを通る。</p>
+
+            <div class="question">(1) 3秒後の直線 \(l\) の式</div>
+            <button class="solution-toggle" onclick="toggleSolution('p2-1')">解答を表示</button>
+            <div id="solution-p2-1" class="solution-content">
+                <p>3秒後：P(4, 3), Q(0, 6)。<br>
+                    切片は6。傾き \(\frac{3-6}{4-0} = -\frac{3}{4}\)。</p>
+                <span class="answer">答え: \(y = -\frac{3}{4}x + 6\)</span>
+            </div>
+
+            <div class="question">(2) 必ず通る定点</div>
+            <button class="solution-toggle" onclick="toggleSolution('p2-2')">解答を表示</button>
+            <div id="solution-p2-2" class="solution-content">
+                <p>\(t\)秒後：P(4, t), Q(0, 2t)。<br>
+                    傾き \(\frac{t-2t}{4-0} = -\frac{t}{4}\)。切片 \(2t\)。<br>
+                    式: \(y = -\frac{t}{4}x + 2t = t(-\frac{1}{4}x + 2)\)。<br>
+                    \(t\) の値に関係なく成り立つには、\(-\frac{1}{4}x + 2 = 0\) かつ \(y=0\)。<br>
+                    \(x=8, y=0\)。</p>
+                <span class="answer">答え: (8, 0)</span>
+            </div>
+
+            <div class="question">(3) 面積の二等分</div>
+            <button class="solution-toggle" onclick="toggleSolution('p2-3')">解答を表示</button>
+            <div id="solution-p2-3" class="solution-content">
+                <p>台形OAPQの面積 \(S_{all} = \frac{1}{2}(OQ+AP) \times OA = \frac{1}{2}(2t+t) \times 4 = 6t\)。<br>
+                    直線 \(y=2x\) がこの面積を二等分(\(3t\))する。</p>
+                <p>\(y=2x\) と線分QPの交点をRとする。<br>
+                    直線QP: \(y = t(-\frac{x}{4}+2)\)。<br>
+                    交点Rのx座標：\(2x = -\frac{tx}{4} + 2t \Rightarrow x(2+\frac{t}{4}) = 2t \Rightarrow x \frac{8+t}{4} = 2t
+                    \Rightarrow x = \frac{8t}{8+t}\)。<br>
+                    二等分される上側の三角形OQRの面積が \(3t\) となればよい。<br>
+                    底辺OQ \(2t\), 高さRのx座標。<br>
+                    \(S_{upper} = \frac{1}{2} \times 2t \times \frac{8t}{8+t} = \frac{8t^2}{8+t}\)。<br>
+                    \(\frac{8t^2}{8+t} = 3t\)。<br>
+                    \(8t = 3(8+t) \Rightarrow 8t = 24 + 3t \Rightarrow 5t = 24 \Rightarrow t = \frac{24}{5}\)。</p>
+                <span class="answer">答え: \(\frac{24}{5}\) 秒後 (4.8秒後)</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 2 -->
+    <div class="section">
+        <span class="page-header">Page 2</span>
+        <h2>Challenge Level 2 + 探索問題</h2>
+
+        <div class="problem-box">
+            <h3>【問題 1】2直線上の動点</h3>
+            <p>P: A(-4,0)出発 \(\to\) C(2,6)方向へ。 (6秒でC着)<br>
+                Q: C(2,6)出発 \(\to\) B(5,0)方向へ。(6秒でB着)<br>
+                ※それぞれ一定の速さで6秒かけて辺上を移動。</p>
+
+            <div class="question">(1) 2秒後の中点座標</div>
+            <button class="solution-toggle" onclick="toggleSolution('c1-1')">解答を表示</button>
+            <div id="solution-c1-1" class="solution-content">
+                <p>PはACの \(\frac{2}{6}=\frac{1}{3}\) 地点。A(-4,0)\(\to\)C(2,6) (+6, +6)。<br>
+                    P: \(-4 + 2, 0 + 2 \Rightarrow (-2, 2)\)。<br>
+                    QはCBの \(\frac{1}{3}\) 地点。C(2,6)\(\to\)B(5,0) (+3, -6)。<br>
+                    Q: \(2 + 1, 6 - 2 \Rightarrow (3, 4)\)。<br>
+                    中点: \(\left( \frac{-2+3}{2}, \frac{2+4}{2} \right) = (\frac{1}{2}, 3)\)。</p>
+                <span class="answer">答え: \((\frac{1}{2}, 3)\)</span>
+            </div>
+
+            <div class="question">(2) PQがx軸と垂直になるときの長さ</div>
+            <button class="solution-toggle" onclick="toggleSolution('c1-2')">解答を表示</button>
+            <div id="solution-c1-2" class="solution-content">
+                <p>\(t\)秒後の座標。<br>
+                    P: \(x = -4 + t\), \(y = t\)。<br>
+                    Q: \(x = 2 + 0.5t\), \(y = 6 - t\)。<br>
+                    PQ \(\perp\) x軸 \(\Leftrightarrow\) \(x\)座標が等しい。<br>
+                    \(-4+t = 2+0.5t \Rightarrow 0.5t = 6 \Rightarrow t=12\)。<br>
+                    長さ \(|y_p - y_q| = |t - (6-t)| = |2t - 6|\)。<br>
+                    \(t=12\) を代入: \(|24 - 6| = 18\)。</p>
+                <span class="answer">答え: 18</span>
+            </div>
+
+            <div class="question">(3) PQ \(\perp\) BC となる時間</div>
+            <button class="solution-toggle" onclick="toggleSolution('c1-3')">解答を表示</button>
+            <div id="solution-c1-3" class="solution-content">
+                <p>直線BCの傾き (C(2,6), B(5,0)): \(\frac{0-6}{5-2} = -2\)。<br>
+                    PQの傾きが \(\frac{1}{2}\) になればよい。<br>
+                    PQの傾き \(m = \frac{y_q - y_p}{x_q - x_p} = \frac{(6-t)-t}{(2+0.5t)-(-4+t)} =
+                    \frac{6-2t}{6-0.5t}\)。<br>
+                    \(\frac{6-2t}{6-0.5t} = \frac{1}{2} \Rightarrow 12 - 4t = 6 - 0.5t \Rightarrow 6 = 3.5t\)。<br>
+                    \(t = \frac{6}{3.5} = \frac{12}{7}\)。</p>
+                <span class="answer">答え: \(\frac{12}{7}\) 秒後</span>
+            </div>
+        </div>
+
+        <div class="problem-box">
+            <h3>【問題 2】直角三角形と面積比</h3>
+            <p>P(0,2)出発, \(y=x+2\)上。t秒後Pのx座標はt。<br>
+                Q(0,0)出発, x軸上。t秒後Qのx座標は3t。<br>
+                P(t, t+2), Q(3t, 0)。</p>
+
+            <div class="question">(1) \(\angle P = 90^\circ\) となるとき</div>
+            <button class="solution-toggle" onclick="toggleSolution('c2-1')">解答を表示</button>
+            <div id="solution-c2-1" class="solution-content">
+                <p>中学生向けの解法（三平方の定理）を使います。<br>
+                    \(\triangle OPQ\) で \(\angle P = 90^\circ\) ならば、斜辺は \(OQ\) になります。<br>
+                    三平方の定理： \(OP^2 + PQ^2 = OQ^2\) が成り立つときを考えます。</p>
+                <p>
+                    座標：\(O(0,0), P(t, t+2), Q(3t, 0)\)<br>
+                    \(OP^2 = t^2 + (t+2)^2\)<br>
+                    \(PQ^2 = (3t-t)^2 + (0-(t+2))^2 = (2t)^2 + (t+2)^2 = 4t^2 + (t+2)^2\)<br>
+                    \(OQ^2 = (3t)^2 = 9t^2\)
+                </p>
+                <p>これらを式に代入：<br>
+                    \(\{t^2 + (t+2)^2\} + \{4t^2 + (t+2)^2\} = 9t^2\)<br>
+                    \(5t^2 + 2(t+2)^2 = 9t^2\)<br>
+                    \(2(t^2 + 4t + 4) = 4t^2\)<br>
+                    \(t^2 + 4t + 4 = 2t^2\)<br>
+                    \(t^2 - 4t - 4 = 0\)
+                </p>
+                <p>解の公式より：<br>
+                    \(t = \frac{-(-4) \pm \sqrt{(-4)^2 - 4 \times 1 \times (-4)}}{2} = \frac{4 \pm \sqrt{16+16}}{2} =
+                    \frac{4 \pm \sqrt{32}}{2} = 2 \pm 2\sqrt{2}\)<br>
+                    \(t>0\) より、\(t = 2 + 2\sqrt{2}\)。</p>
+                <span class="answer">答え: \(2 + 2\sqrt{2}\) 秒後</span>
+            </div>
+
+            <div class="question">(2) 面積が4秒間で120増加</div>
+            <button class="solution-toggle" onclick="toggleSolution('c2-2')">解答を表示</button>
+            <div id="solution-c2-2" class="solution-content">
+                <p>面積 \(S(t)\) を \(t\) の式で表します。<br>
+                    底辺を \(OQ = 3t\)、高さを \(P\) の \(y\) 座標 \((t+2)\) とします。<br>
+                    \(S(t) = \frac{1}{2} \times 3t \times (t+2) = \frac{3}{2}t^2 + 3t\)</p>
+                <p>4秒後の面積 \(S(t+4)\) との差が 120。<br>
+                    \(S(t+4) - S(t) = 120\)<br>
+                    ここで、変化の割合の考え方や、式変形を使います。<br>
+                    \(S(t+4) = \frac{3}{2}(t+4)^2 + 3(t+4)\)<br>
+                    展開して整理すると、差の部分は：<br>
+                    \(\frac{3}{2} \{ (t+4)^2 - t^2 \} + 3 \{ (t+4) - t \} = 120\)<br>
+                    \(\frac{3}{2} (8t + 16) + 3(4) = 120\)<br>
+                    \(12t + 24 + 12 = 120\)<br>
+                    \(12t + 36 = 120\)<br>
+                    \(12t = 84 \Rightarrow t = 7\)</p>
+                <span class="answer">答え: 7秒後から11秒後まで</span>
+            </div>
+
+            <div class="question">(3) 面積を1:3に分ける直線</div>
+            <button class="solution-toggle" onclick="toggleSolution('c2-3')">解答を表示</button>
+            <div id="solution-c2-3" class="solution-content">
+                <p>直線は \(y\) 軸上の点 \(R(0, a)\) と \(Q(3t, 0)\) を通ります。<br>
+                    この直線が \(\triangle OPQ\) の面積を分けるには、辺 \(OP\) と交わる必要があります（\(O\) 以外の点 \(K\) で交わるとします）。</p>
+                <p>底辺を \(OP\) と見たとき、頂点 \(Q\) は共通なので、面積比は底辺の分割比（線分比）と同じになります。<br>
+                    面積が \(1:3\) になるには、点 \(K\) が線分 \(OP\) を \(1:3\) または \(3:1\) に分ければよいことになります。</p>
+
+                <p><strong>ケース1：\(OK : KP = 1 : 3\) のとき</strong> (\(O\) に近い)<br>
+                    \(K\) の座標は \(P(t, t+2)\) の \(\frac{1}{4}\) です。<br>
+                    \(K(\frac{t}{4}, \frac{t+2}{4})\)。<br>
+                    3点 \(R(0, a), K, Q(3t, 0)\) が一直線上にある条件（傾きが等しい）より：<br>
+                    直線 \(RQ\) の傾き \(=\) 直線 \(KQ\) の傾き<br>
+                    \(\frac{0-a}{3t-0} = \frac{0 - \frac{t+2}{4}}{3t - \frac{t}{4}}\)<br>
+                    \(\frac{-a}{3t} = \frac{-\frac{t+2}{4}}{\frac{11t}{4}} = \frac{-(t+2)}{11t}\)<br>
+                    \(\frac{a}{3} = \frac{t+2}{11}\) 　(両辺に \(-t\) をかけ、分母を払う)<br>
+                    \(11a = 3t + 6 \Rightarrow 3t = 11a - 6 \Rightarrow t = \frac{11a-6}{3}\)</p>
+
+                <p><strong>ケース2：\(OK : KP = 3 : 1\) のとき</strong> (\(P\) に近い)<br>
+                    \(K\) の座標は \(P\) の \(\frac{3}{4}\) です。<br>
+                    \(K(\frac{3t}{4}, \frac{3(t+2)}{4})\)。<br>
+                    同様に傾きを計算：<br>
+                    \(\frac{-a}{3t} = \frac{0 - \frac{3(t+2)}{4}}{3t - \frac{3t}{4}} =
+                    \frac{-\frac{3(t+2)}{4}}{\frac{9t}{4}} = \frac{-3(t+2)}{9t} = \frac{-(t+2)}{3t}\)<br>
+                    \(\frac{-a}{3t} = \frac{-(t+2)}{3t}\)<br>
+                    \(a = t+2 \Rightarrow t = a-2\)</p>
+
+                <span class="answer">答え: \(t = \frac{11a-6}{3}, \quad t = a-2\)</span>
+            </div>
+
+</body>
+
+</html>

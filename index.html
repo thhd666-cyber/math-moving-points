@@ -84,6 +84,58 @@
             color: #95a5a6;
             font-size: 0.9em;
         }
+
+        /* 応援メッセージ */
+        .cheering-banner {
+            background: linear-gradient(135deg, #e74c3c, #f39c12, #e74c3c);
+            background-size: 200% 200%;
+            animation: gradientShift 4s ease infinite;
+            color: white;
+            text-align: center;
+            padding: 25px 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .cheering-banner .goal {
+            font-size: 1.6em;
+            font-weight: bold;
+            margin: 0 0 8px 0;
+            letter-spacing: 0.1em;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .cheering-banner .goal .school-name {
+            font-size: 1.2em;
+            color: #fff59d;
+        }
+
+        .cheering-banner .message {
+            font-size: 1.05em;
+            margin: 0;
+            opacity: 0.95;
+        }
+
+        .cheering-banner .emoji {
+            font-size: 1.4em;
+        }
     </style>
 </head>
 
@@ -93,6 +145,18 @@
         <h1>数学 解説サイト</h1>
         <p class="subtitle">動点・関数・空間図形・濃度をマスターしよう！</p>
     </header>
+
+    <!-- 応援メッセージ -->
+    <div class="cheering-banner">
+        <p class="goal">
+            <span class="emoji">🌸</span>
+            目標：<span class="school-name">國學院高校</span> 合格！
+            <span class="emoji">🌸</span>
+        </p>
+        <p class="message">
+            🔥 努力は絶対に裏切らない！一問一問が合格への一歩。最後まで走り抜こう！ 🔥
+        </p>
+    </div>
 
     <div class="container">
         <!-- Card 1 -->

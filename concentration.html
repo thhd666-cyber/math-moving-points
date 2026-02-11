@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>濃度に関する問題・食塩水の文章題 解説</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: #2c3e50;
+        }
+
+        h1 {
+            text-align: center;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        .section {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .problem-box {
+            background-color: #e8f4fd;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .example-box {
+            background-color: #eafaf1;
+            border-left: 5px solid #2ecc71;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .tip-box {
+            background-color: #fdf2e9;
+            border-left: 5px solid #e67e22;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .point-box {
+            background-color: #f9ebea;
+            border-left: 5px solid #c0392b;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .question {
+            font-weight: bold;
+            margin-bottom: 10px;
+            margin-top: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .solution-toggle {
+            background-color: #34495e;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9em;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .solution-toggle:hover {
+            background-color: #2c3e50;
+        }
+
+        .solution-content {
+            display: none;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed #ddd;
+        }
+
+        .solution-content.show {
+            display: block;
+        }
+
+        .answer {
+            color: #e74c3c;
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+
+        .page-header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 15px;
+            font-size: 0.9em;
+        }
+
+        .calc-step {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: monospace;
+            margin: 5px 0;
+        }
+
+        .formula-box {
+            background: #eaf2f8;
+            border: 2px solid #2980b9;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        .beaker-diagram {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+
+        .beaker {
+            border: 2px solid #2980b9;
+            border-top: none;
+            width: 80px;
+            height: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(to top, #d4e6f1 70%, transparent 70%);
+            border-radius: 0 0 5px 5px;
+            position: relative;
+            font-size: 0.85em;
+        }
+
+        .beaker .concentration {
+            position: absolute;
+            top: -20px;
+            font-weight: bold;
+            color: #2980b9;
+        }
+
+        .beaker .amount {
+            font-weight: bold;
+        }
+
+        .beaker-op {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #2980b9;
+        }
+    </style>
+    <script>
+        function toggleSolution(id) {
+            var content = document.getElementById('solution-' + id);
+            if (content.classList.contains('show')) {
+                content.classList.remove('show');
+            } else {
+                content.classList.add('show');
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+    <h1>濃度に関する問題・食塩水の文章題 解説・解答</h1>
+
+    <!-- 塾技2: 食塩水の文章題 基本解法 -->
+    <div class="section">
+        <span class="page-header">塾技 2</span>
+        <h2>食塩水の文章題</h2>
+
+        <div class="point-box">
+            <h3>▶ 食塩水の文章題の解法手順</h3>
+            <p>【手順①】問題条件をビーカーの図で整理する。</p>
+            <p>【手順②】各ビーカーの食塩水全体の量および食塩の量を考える。</p>
+            <p>【手順③】<strong>食塩の量</strong>または<strong>食塩水の濃度</strong>について立式する。</p>
+            <div class="formula-box">
+                <p>\(\text{食塩の量} = \text{食塩水全体の量} \times \dfrac{\text{濃度}(\%)}{100}\)</p>
+                <p>\(\text{食塩水の濃度}(\%) = \dfrac{\text{食塩の量}}{\text{食塩水全体の量}} \times 100\)</p>
+            </div>
+        </div>
+
+        <div class="tip-box">
+            <h3>🔥 塾技解説</h3>
+            <p>食塩水の文章題は、とくに難関私立高校を中心に出題されている。押さえるべき点は2つで、食塩水の濃度および食塩の量の求め方だ。</p>
+            <p>まずは食塩水の濃度。食塩水の濃度は、食塩水全体に対して食塩がどれだけの割合で溶けているかを表す数値で、％を用いて表す。これは何も食塩水に限らず、砂糖水でもオレンジジュースでも同じなんだ。</p>
+            <p>次に食塩の量。食塩水の文章題の多くは<strong>食塩の量に注目</strong>して方程式を立てる。求め方は簡単で、食塩水全体の量に濃度をかけるだけ。</p>
+            <p>食塩の量および食塩水の濃度の求め方、ともにしっかり覚えよう！</p>
+        </div>
+
+        <div class="example-box">
+            <h3>【例題】水を加える問題</h3>
+            <p>8%の食塩水200gに、何gかの水を加えて5%の食塩水を作りたい。水は何g加えればよいですか。</p>
+            <button class="solution-toggle" onclick="toggleSolution('juku-ex1')">解答を表示</button>
+            <div id="solution-juku-ex1" class="solution-content">
+                <p>加えた水を \(x\) gとし、各ビーカーの食塩の量について立式する。</p>
+                <div class="beaker-diagram">
+                    <div class="beaker">
+                        <span class="concentration">8%</span>
+                        <span class="amount">200g</span>
+                    </div>
+                    <span class="beaker-op">+</span>
+                    <div class="beaker" style="background: linear-gradient(to top, #d5f5e3 70%, transparent 70%);">
+                        <span class="concentration">0%</span>
+                        <span class="amount">\(x\)g</span>
+                    </div>
+                    <span class="beaker-op">=</span>
+                    <div class="beaker">
+                        <span class="concentration">5%</span>
+                        <span class="amount">\((200+x)\)g</span>
+                    </div>
+                </div>
+                <p>食塩の量について：</p>
+                <div class="calc-step">
+                    \(200 \times \dfrac{8}{100} + x \times \dfrac{0}{100} = \dfrac{5}{100}(200+x)\)
+                </div>
+                <p>両辺を100倍する：</p>
+                <div class="calc-step">
+                    \(1600 + 0 = 5(200+x)\)<br>
+                    \(1600 = 1000 + 5x\)<br>
+                    \(-5x = -600\)<br>
+                    \(x = 120\)
+                </div>
+                <span class="answer">答え: 120g</span>
+
+                <div class="tip-box" style="margin-top:15px;">
+                    <p><strong>＋補足：食塩や水を加える問題の考え方</strong></p>
+                    <p>食塩を加えるということ ⇒ <strong>100%</strong>の食塩水を加えると考える。</p>
+                    <p>水を加えるということ ⇒ <strong>0%</strong>の食塩水を加えると考える。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ポイント4: 濃度に関する問題Ⅰ -->
+    <div class="section">
+        <span class="page-header">ポイント 4</span>
+        <h2>濃度に関する問題 Ⅰ</h2>
+
+        <div class="example-box">
+            <h3>【例題】2種類の食塩水を混ぜる（基本）</h3>
+            <p>4%の食塩水と8%の食塩水を混ぜて、5%の食塩水を200gつくりたい。それぞれ何g混ぜればよいか求めなさい。</p>
+            <button class="solution-toggle" onclick="toggleSolution('p4-ex')">解答を表示</button>
+            <div id="solution-p4-ex" class="solution-content">
+                <p><strong>指針：</strong>全体の重さとふくまれる食塩の重さとで連立方程式をつくる。</p>
+                <p>4%の食塩水を \(x\) g、8%の食塩水を \(y\) gとする。</p>
+                <div class="beaker-diagram">
+                    <div class="beaker">
+                        <span class="concentration">4%</span>
+                        <span class="amount">\(x\)g</span>
+                    </div>
+                    <span class="beaker-op">+</span>
+                    <div class="beaker">
+                        <span class="concentration">8%</span>
+                        <span class="amount">\(y\)g</span>
+                    </div>
+                    <span class="beaker-op">=</span>
+                    <div class="beaker">
+                        <span class="concentration">5%</span>
+                        <span class="amount">200g</span>
+                    </div>
+                </div>
+                <p>全体の重さの関係から、</p>
+                <div class="calc-step">\(x + y = 200\) ……(a)</div>
+                <p>ふくまれる食塩の重さから、</p>
+                <div class="calc-step">\(0.04x + 0.08y = 200 \times 0.05\) ……(b)</div>
+                <p>(a), (b)を連立方程式として解くと、\(x = 150, y = 50\)</p>
+                <span class="answer">答え: 4%の食塩水 150g、8%の食塩水 50g</span>
+            </div>
+        </div>
+
+        <div class="problem-box">
+            <h3>【確認問題 4】</h3>
+
+            <div class="question">◆(1) 10%の食塩水と7%の食塩水を混ぜて、8%の食塩水を120gつくりたい。それぞれ何g混ぜればよいか求めなさい。</div>
+            <button class="solution-toggle" onclick="toggleSolution('q4-1')">解答を表示</button>
+            <div id="solution-q4-1" class="solution-content">
+                <p>10%の食塩水を \(x\) g、7%の食塩水を \(y\) gとする。</p>
+                <div class="calc-step">
+                    \(x + y = 120\) ……(a)<br>
+                    \(0.10x + 0.07y = 120 \times 0.08 = 9.6\) ……(b)
+                </div>
+                <p>(a)より \(y = 120 - x\) を(b)に代入：</p>
+                <div class="calc-step">
+                    \(0.10x + 0.07(120 - x) = 9.6\)<br>
+                    \(0.10x + 8.4 - 0.07x = 9.6\)<br>
+                    \(0.03x = 1.2\)<br>
+                    \(x = 40\)
+                </div>
+                <p>\(y = 120 - 40 = 80\)</p>
+                <span class="answer">答え: 10%の食塩水 40g、7%の食塩水 80g</span>
+            </div>
+
+            <div class="question">(2) 20%の砂糖水と50%の砂糖水がある。この砂糖水を混ぜて、30%の砂糖水を300gつくりたい。それぞれ何g混ぜればよいか求めなさい。</div>
+            <button class="solution-toggle" onclick="toggleSolution('q4-2')">解答を表示</button>
+            <div id="solution-q4-2" class="solution-content">
+                <p>20%の砂糖水を \(x\) g、50%の砂糖水を \(y\) gとする。</p>
+                <div class="calc-step">
+                    \(x + y = 300\) ……(a)<br>
+                    \(0.20x + 0.50y = 300 \times 0.30 = 90\) ……(b)
+                </div>
+                <p>(a)より \(y = 300 - x\) を(b)に代入：</p>
+                <div class="calc-step">
+                    \(0.20x + 0.50(300 - x) = 90\)<br>
+                    \(0.20x + 150 - 0.50x = 90\)<br>
+                    \(-0.30x = -60\)<br>
+                    \(x = 200\)
+                </div>
+                <p>\(y = 300 - 200 = 100\)</p>
+                <span class="answer">答え: 20%の砂糖水 200g、50%の砂糖水 100g</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ポイント5: 濃度に関する問題Ⅱ -->
+    <div class="section">
+        <span class="page-header">ポイント 5</span>
+        <h2>濃度に関する問題 Ⅱ</h2>
+
+        <div class="example-box">
+            <h3>【例題】2種類の食塩水A, B（濃度を求める）</h3>
+            <p>2種類の食塩水A, Bがある。A 50gとB 100gを混ぜると12%の食塩水ができ、A 200gとB 160gを混ぜると14%の食塩水ができるとき、食塩水A, Bの濃度をそれぞれ求めなさい。</p>
+            <button class="solution-toggle" onclick="toggleSolution('p5-ex')">解答を表示</button>
+            <div id="solution-p5-ex" class="solution-content">
+                <p><strong>指針：</strong>Aの濃度を \(x\)%、Bの濃度を \(y\)% として、ふくまれる食塩の重さについて式をつくる。</p>
+                <p>Aの濃度を \(x\)%、Bの濃度を \(y\)% とする。</p>
+                <p><strong>1つ目の条件：</strong>A 50gとB 100gを混ぜると12%</p>
+                <div class="calc-step">
+                    A 50gにふくまれる食塩 \(50 \times \dfrac{x}{100} = 0.5x\) (g)<br>
+                    B 100gにふくまれる食塩 \(100 \times \dfrac{y}{100} = y\) (g)<br>
+                    12%の食塩水150gにふくまれる食塩 \(150 \times 0.12 = 18\) (g)<br>
+                    よって、\(0.5x + y = 18\) ……(a)
+                </div>
+                <p><strong>2つ目の条件：</strong>A 200gとB 160gを混ぜると14%</p>
+                <div class="calc-step">
+                    A 200gにふくまれる食塩 \(200 \times \dfrac{x}{100} = 2x\) (g)<br>
+                    B 160gにふくまれる食塩 \(160 \times \dfrac{y}{100} = 1.6y\) (g)<br>
+                    14%の食塩水360gにふくまれる食塩 \(360 \times 0.14 = 50.4\) (g)<br>
+                    よって、\(2x + 1.6y = 50.4\) ……(b)
+                </div>
+                <p>(a), (b)を連立方程式として解くと、\(x = 18, \; y = 9\)</p>
+                <span class="answer">答え: Aの濃度 18%、Bの濃度 9%</span>
+            </div>
+        </div>
+
+        <div class="problem-box">
+            <h3>【確認問題 5】</h3>
+
+            <div class="question">◆(1) 2種類の食塩水A, Bがある。A 200gとB 100gを混ぜると5%の食塩水ができ、A 100gとB 500gを混ぜると8%の食塩水ができるとき、A,
+                Bの濃度をそれぞれ求めなさい。</div>
+            <button class="solution-toggle" onclick="toggleSolution('q5-1')">解答を表示</button>
+            <div id="solution-q5-1" class="solution-content">
+                <p>Aの濃度を \(x\)%、Bの濃度を \(y\)% とする。</p>
+                <p><strong>条件1：</strong>A 200g + B 100g → 5%の食塩水300g</p>
+                <div class="calc-step">
+                    \(2x + y = 300 \times 0.05 = 15\) ……(a)
+                </div>
+                <p><strong>条件2：</strong>A 100g + B 500g → 8%の食塩水600g</p>
+                <div class="calc-step">
+                    \(x + 5y = 600 \times 0.08 = 48\) ……(b)
+                </div>
+                <p>(a)より \(y = 15 - 2x\) を(b)に代入：</p>
+                <div class="calc-step">
+                    \(x + 5(15 - 2x) = 48\)<br>
+                    \(x + 75 - 10x = 48\)<br>
+                    \(-9x = -27\)<br>
+                    \(x = 3\)
+                </div>
+                <p>\(y = 15 - 2(3) = 9\)</p>
+                <span class="answer">答え: Aの濃度 3%、Bの濃度 9%</span>
+            </div>
+
+            <div class="question">(2) A, B
+                2種類の食塩水が500gずつある。Aから300g、Bから200g取り出して混ぜ合わせたら8%の食塩水ができた。また、残った食塩水を混ぜ合わせたら7%の食塩水ができた。A, Bの濃度をそれぞれ求めなさい。
+            </div>
+            <button class="solution-toggle" onclick="toggleSolution('q5-2')">解答を表示</button>
+            <div id="solution-q5-2" class="solution-content">
+                <p>Aの濃度を \(x\)%、Bの濃度を \(y\)% とする。</p>
+                <p><strong>条件1：</strong>A 300g + B 200g → 8%の食塩水500g</p>
+                <div class="calc-step">
+                    \(3x + 2y = 500 \times 0.08 = 40\) ……(a)
+                </div>
+                <p><strong>条件2：</strong>残りのA 200g + B 300g → 7%の食塩水500g</p>
+                <div class="calc-step">
+                    \(2x + 3y = 500 \times 0.07 = 35\) ……(b)
+                </div>
+                <p>(a)×3 − (b)×2：</p>
+                <div class="calc-step">
+                    \(9x + 6y = 120\)<br>
+                    \(4x + 6y = 70\)<br>
+                    \(5x = 50\)<br>
+                    \(x = 10\)
+                </div>
+                <p>\(y = \dfrac{40 - 3(10)}{2} = \dfrac{10}{2} = 5\)</p>
+                <span class="answer">答え: Aの濃度 10%、Bの濃度 5%</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 練習問題（p.55） -->
+    <div class="section">
+        <span class="page-header">練習問題</span>
+        <h2>連立方程式の利用②</h2>
+
+        <div class="problem-box">
+            <h3>【3】次の問いに答えなさい。（◇ポイント3）</h3>
+
+            <div class="question">◆(1) A, B
+                2種類のジュースがあり、昨日は合わせて400本売れた。今日売れた本数は、昨日に比べてAが20%、Bが10%それぞれ減り、合わせて330本であった。昨日売れたA, Bのジュースの本数をそれぞれ求めなさい。
+            </div>
+            <button class="solution-toggle" onclick="toggleSolution('ex3-1')">解答を表示</button>
+            <div id="solution-ex3-1" class="solution-content">
+                <p>昨日売れたAのジュースを \(x\) 本、Bのジュースを \(y\) 本とする。</p>
+                <div class="calc-step">
+                    \(x + y = 400\) ……(a)<br>
+                    \(0.8x + 0.9y = 330\) ……(b)
+                </div>
+                <p>(a)より \(y = 400 - x\) を(b)に代入：</p>
+                <div class="calc-step">
+                    \(0.8x + 0.9(400 - x) = 330\)<br>
+                    \(0.8x + 360 - 0.9x = 330\)<br>
+                    \(-0.1x = -30\)<br>
+                    \(x = 300\)
+                </div>
+                <p>\(y = 400 - 300 = 100\)</p>
+                <span class="answer">答え: A 300本、B 100本</span>
+            </div>
+
+            <div class="question">(2)
+                ある中学校の生徒会では、毎月アルミ缶を回収している。9月に集めた缶の重さは、2年生と3年生合わせて38kgであった。10月に集めた缶の重さは、3年生の方が2年生よりも6kg多かったが、9月に比べると、2年生は50%増加し、3年生は25%減少していた。10月に2年生と3年生が集めた缶の重さをそれぞれ求めなさい。
+            </div>
+            <button class="solution-toggle" onclick="toggleSolution('ex3-2')">解答を表示</button>
+            <div id="solution-ex3-2" class="solution-content">
+                <p>9月の2年生を \(x\) kg、3年生を \(y\) kgとする。</p>
+                <div class="calc-step">
+                    \(x + y = 38\) ……(a)
+                </div>
+                <p>10月は、2年生 \(1.5x\) kg、3年生 \(0.75y\) kg。</p>
+                <div class="calc-step">
+                    \(1.5x - 0.75y = 6\)（3年生の方が6kg多い → ではなく差が6）
+                </div>
+                <p>問題文「3年生の方が2年生よりも6kg多かった」より：</p>
+                <div class="calc-step">
+                    \(0.75y - 1.5x = 6\) ……(b)
+                </div>
+                <p>(a)より \(y = 38 - x\) を(b)に代入：</p>
+                <div class="calc-step">
+                    \(0.75(38 - x) - 1.5x = 6\)<br>
+                    \(28.5 - 0.75x - 1.5x = 6\)<br>
+                    \(-2.25x = -22.5\)<br>
+                    \(x = 10\)
+                </div>
+                <p>\(y = 38 - 10 = 28\)</p>
+                <p>10月：2年生 \(1.5 \times 10 = 15\) kg、3年生 \(0.75 \times 28 = 21\) kg</p>
+                <span class="answer">答え: 2年生 15kg、3年生 21kg</span>
+            </div>
+        </div>
+
+        <div class="problem-box">
+            <h3>【4】次の問いに答えなさい。（◇ポイント4）</h3>
+
+            <div class="question">◆(1) 3%の食塩水と8%の食塩水を混ぜて、5%の食塩水を500gつくりたい。それぞれ何g混ぜればよいか求めなさい。</div>
+            <button class="solution-toggle" onclick="toggleSolution('ex4-1')">解答を表示</button>
+            <div id="solution-ex4-1" class="solution-content">
+                <p>3%の食塩水を \(x\) g、8%の食塩水を \(y\) gとする。</p>
+                <div class="calc-step">
+                    \(x + y = 500\) ……(a)<br>
+                    \(0.03x + 0.08y = 500 \times 0.05 = 25\) ……(b)
+                </div>
+                <p>(a)より \(y = 500 - x\) を(b)に代入：</p>
+                <div class="calc-step">
+                    \(0.03x + 0.08(500 - x) = 25\)<br>
+                    \(0.03x + 40 - 0.08x = 25\)<br>
+                    \(-0.05x = -15\)<br>
+                    \(x = 300\)
+                </div>
+                <p>\(y = 500 - 300 = 200\)</p>
+                <span class="answer">答え: 3%の食塩水 300g、8%の食塩水 200g</span>
+            </div>
+
+            <div class="question">(2) 4%の食塩水に食塩を加えて、12%の食塩水を240gつくりたい。4%の食塩水何gに食塩何gを混ぜればよいか求めなさい。</div>
+            <button class="solution-toggle" onclick="toggleSolution('ex4-2')">解答を表示</button>
+            <div id="solution-ex4-2" class="solution-content">
+                <p>4%の食塩水を \(x\) g、加える食塩を \(y\) gとする。</p>
+                <p>※食塩は100%の食塩水と考える。</p>
+                <div class="calc-step">
+                    \(x + y = 240\) ……(a)<br>
+                    \(0.04x + y = 240 \times 0.12 = 28.8\) ……(b)
+                </div>
+                <p>(a) − (b)：</p>
+                <div class="calc-step">
+                    \(0.96x = 211.2\)<br>
+                    \(x = 220\)
+                </div>
+                <p>\(y = 240 - 220 = 20\)</p>
+                <span class="answer">答え: 4%の食塩水 220g、食塩 20g</span>
+            </div>
+        </div>
+
+        <div class="problem-box">
+            <h3>【5】次の問いに答えなさい。（◇ポイント5）</h3>
+
+            <div class="question">◆(1) 120gの食塩水Aと80gの食塩水Bがある。この2つの食塩水を混ぜると12%の食塩水ができる。また、食塩水A 30gと食塩水B
+                80gにふくまれる食塩の量は等しい。食塩水A, Bの濃度を求めなさい。</div>
+            <button class="solution-toggle" onclick="toggleSolution('ex5-1')">解答を表示</button>
+            <div id="solution-ex5-1" class="solution-content">
+                <p>Aの濃度を \(x\)%、Bの濃度を \(y\)% とする。</p>
+                <p><strong>条件1：</strong>A 120g + B 80g → 12%の食塩水200g</p>
+                <div class="calc-step">
+                    \(1.2x + 0.8y = 200 \times 0.12 = 24\) ……(a)
+                </div>
+                <p><strong>条件2：</strong>A 30gの食塩 = B 80gの食塩</p>
+                <div class="calc-step">
+                    \(0.3x = 0.8y\) ……(b)
+                </div>
+                <p>(b)より \(x = \dfrac{8}{3}y\)。(a)に代入：</p>
+                <div class="calc-step">
+                    \(1.2 \times \dfrac{8}{3}y + 0.8y = 24\)<br>
+                    \(3.2y + 0.8y = 24\)<br>
+                    \(4y = 24\)<br>
+                    \(y = 6\)
+                </div>
+                <p>\(x = \dfrac{8}{3} \times 6 = 16\)</p>
+                <span class="answer">答え: Aの濃度 16%、Bの濃度 6%</span>
+            </div>
+
+            <div class="question">(2) 容器A, Bに異なる濃度の食塩水が、Aには400g, Bには300g入っている。A,
+                Bからそれぞれ100gずつ取り出して混ぜ合わせると5%の食塩水ができた。次に、A, Bに残った食塩水をすべて混ぜ合わせ、100gだけ水を蒸発させると5.5%の食塩水になった。はじめに容器A,
+                Bに入っていた食塩水の濃度をそれぞれ求めなさい。</div>
+            <button class="solution-toggle" onclick="toggleSolution('ex5-2')">解答を表示</button>
+            <div id="solution-ex5-2" class="solution-content">
+                <p>Aの濃度を \(x\)%、Bの濃度を \(y\)% とする。</p>
+                <p><strong>条件1：</strong>A 100g + B 100g → 5%の食塩水200g</p>
+                <div class="calc-step">
+                    \(x + y = 200 \times 0.05 = 10\) ……(a)
+                </div>
+                <p><strong>条件2：</strong>残りのA 300g + B 200g → 500g。水を100g蒸発 → 400gで5.5%</p>
+                <div class="calc-step">
+                    食塩の量は蒸発で変わらないので：<br>
+                    \(3x + 2y = 400 \times 0.055 = 22\) ……(b)
+                </div>
+                <p>(a)より \(y = 10 - x\) を(b)に代入：</p>
+                <div class="calc-step">
+                    \(3x + 2(10 - x) = 22\)<br>
+                    \(3x + 20 - 2x = 22\)<br>
+                    \(x = 2\)
+                </div>
+                <p>\(y = 10 - 2 = 8\)</p>
+                <span class="answer">答え: Aの濃度 2%、Bの濃度 8%</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 問題6, 7 -->
+    <div class="section">
+        <span class="page-header">応用問題</span>
+        <h2>連立方程式の応用</h2>
+
+        <div class="problem-box">
+            <h3>【6】鉄橋と列車</h3>
+            <p>長さ360mの貨物列車が、ある鉄橋を渡り始めてから、渡り終わるまで1分かかった。また、長さ200mの特急列車が、貨物列車の2倍の速さでこの鉄橋を渡り始めてから、渡り終わるまで25秒かかった。貨物列車の速さと、鉄橋の長さを求めなさい。
+            </p>
+            <button class="solution-toggle" onclick="toggleSolution('ex6')">解答を表示</button>
+            <div id="solution-ex6" class="solution-content">
+                <p>貨物列車の速さを毎秒 \(x\) m、鉄橋の長さを \(y\) mとする。</p>
+                <p><strong>条件1：</strong>貨物列車が鉄橋を渡る（列車の長さ＋鉄橋の長さ＝走った距離）</p>
+                <div class="calc-step">
+                    \(60x = 360 + y\) ……(a)
+                </div>
+                <p><strong>条件2：</strong>特急列車（速さ \(2x\) m/s）が鉄橋を渡る</p>
+                <div class="calc-step">
+                    \(25 \times 2x = 200 + y\)<br>
+                    \(50x = 200 + y\) ……(b)
+                </div>
+                <p>(a) − (b)：</p>
+                <div class="calc-step">
+                    \(10x = 160\)<br>
+                    \(x = 16\)
+                </div>
+                <p>\(y = 60 \times 16 - 360 = 960 - 360 = 600\)</p>
+                <span class="answer">答え: 貨物列車の速さ 毎秒16m（時速57.6km）、鉄橋の長さ 600m</span>
+            </div>
+        </div>
+
+        <div class="problem-box">
+            <h3>【7】売上と個数</h3>
+            <p>定価が1個250円のある商品を、A店とB店で販売した。A店では最初から最後まで定価の20%引きで販売した。B店では初め定価で販売したが、途中から定価の半額で販売した。定価の半額で販売した個数は84個であった。A店とB店で販売した商品の個数の合計は690個で、A店、B店それぞれの売上金の総額は同じであった。このとき、A店、B店それぞれで販売した商品の個数を求めなさい。
+            </p>
+            <button class="solution-toggle" onclick="toggleSolution('ex7')">解答を表示</button>
+            <div id="solution-ex7" class="solution-content">
+                <p>A店の販売個数を \(a\) 個、B店の販売個数を \(b\) 個とする。</p>
+                <p>A店の売上単価：\(250 \times 0.8 = 200\) 円</p>
+                <p>B店は、定価250円で \((b - 84)\) 個、半額125円で84個販売。</p>
+                <div class="calc-step">
+                    \(a + b = 690\) ……(a)
+                </div>
+                <p>売上が同じなので：</p>
+                <div class="calc-step">
+                    \(200a = 250(b - 84) + 125 \times 84\)<br>
+                    \(200a = 250b - 21000 + 10500\)<br>
+                    \(200a = 250b - 10500\) ……(b)
+                </div>
+                <p>(a)より \(a = 690 - b\) を(b)に代入：</p>
+                <div class="calc-step">
+                    \(200(690 - b) = 250b - 10500\)<br>
+                    \(138000 - 200b = 250b - 10500\)<br>
+                    \(148500 = 450b\)<br>
+                    \(b = 330\)
+                </div>
+                <p>\(a = 690 - 330 = 360\)</p>
+                <span class="answer">答え: A店 360個、B店 330個</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 入試問題をチェック -->
+    <div class="section">
+        <span class="page-header">入試問題</span>
+        <h2>入試問題をチェック！</h2>
+
+        <div class="problem-box">
+            <h3>【問題】食塩水の交換（成蹊高）</h3>
+            <p>容器Aには9%の食塩水が400g、容器Bには4%の食塩水が240g入っている。容器A, Bからそれぞれ \(x\)
+                gの食塩水を取り出し、容器Aから取り出した食塩水は容器Bに、容器Bから取り出した食塩水は容器Aに入れてよくかき混ぜたところ、2つの容器の中の食塩水の濃度が同じになった。このとき、\(x\) の値を求めなさい。
+            </p>
+            <button class="solution-toggle" onclick="toggleSolution('nyushi-1')">解答を表示</button>
+            <div id="solution-nyushi-1" class="solution-content">
+                <p>まず、問題条件をビーカーの図で整理する。</p>
+
+                <p><strong>新たな容器A：</strong></p>
+                <div class="beaker-diagram">
+                    <div class="beaker">
+                        <span class="concentration">9%</span>
+                        <span class="amount">400g</span>
+                    </div>
+                    <span class="beaker-op">−</span>
+                    <div class="beaker">
+                        <span class="concentration">9%</span>
+                        <span class="amount">\(x\)g</span>
+                    </div>
+                    <span class="beaker-op">+</span>
+                    <div class="beaker">
+                        <span class="concentration">4%</span>
+                        <span class="amount">\(x\)g</span>
+                    </div>
+                    <span class="beaker-op">=</span>
+                    <div class="beaker">
+                        <span class="concentration">?%</span>
+                        <span class="amount">400g</span>
+                    </div>
+                </div>
+                <p>食塩の量：</p>
+                <div class="calc-step">
+                    \(400 \times \dfrac{9}{100} - \dfrac{9}{100}x + \dfrac{4}{100}x = 36 - \dfrac{1}{20}x\)
+                </div>
+
+                <p><strong>新たな容器B：</strong></p>
+                <div class="beaker-diagram">
+                    <div class="beaker">
+                        <span class="concentration">4%</span>
+                        <span class="amount">240g</span>
+                    </div>
+                    <span class="beaker-op">−</span>
+                    <div class="beaker">
+                        <span class="concentration">4%</span>
+                        <span class="amount">\(x\)g</span>
+                    </div>
+                    <span class="beaker-op">+</span>
+                    <div class="beaker">
+                        <span class="concentration">9%</span>
+                        <span class="amount">\(x\)g</span>
+                    </div>
+                    <span class="beaker-op">=</span>
+                    <div class="beaker">
+                        <span class="concentration">?%</span>
+                        <span class="amount">240g</span>
+                    </div>
+                </div>
+                <p>食塩の量：</p>
+                <div class="calc-step">
+                    \(240 \times \dfrac{4}{100} - \dfrac{4}{100}x + \dfrac{9}{100}x = 9.6 + \dfrac{1}{20}x\)
+                </div>
+
+                <p>できあがった容器Aと容器Bの<strong>濃度が等しい</strong>ことより、</p>
+                <div class="calc-step">
+                    \(\dfrac{36 - \dfrac{1}{20}x}{400} \times 100 = \dfrac{9.6 + \dfrac{1}{20}x}{240} \times 100\)
+                </div>
+                <p>両辺を1200倍する：</p>
+                <div class="calc-step">
+                    \(3\left(36 - \dfrac{1}{20}x\right) = 5\left(9.6 + \dfrac{1}{20}x\right)\)<br><br>
+                    \(108 - \dfrac{3}{20}x = 48 + \dfrac{5}{20}x\)<br><br>
+                    \(108 - 48 = \dfrac{5}{20}x + \dfrac{3}{20}x\)<br><br>
+                    \(60 = \dfrac{8}{20}x = \dfrac{2}{5}x\)<br><br>
+                    \(x = 150\)
+                </div>
+                <span class="answer">答え: \(x = 150\)</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 入試問題にチャレンジ -->
+    <div class="section">
+        <span class="page-header">入試チャレンジ</span>
+        <h2>入試問題にチャレンジ！</h2>
+
+        <div class="problem-box">
+            <h3>【問題 1】（明治学院高）</h3>
+            <p>濃度4%の食塩水が600g入っている容器がある。ここから食塩水 \(x\) gを取り出したとき、次の問いに答えなさい。</p>
+            <div class="question">(1) 容器に残っている食塩水に含まれる食塩の量を \(x\) を用いた式で表しなさい。</div>
+            <button class="solution-toggle" onclick="toggleSolution('challenge-1-1')">解答を表示</button>
+            <div id="solution-challenge-1-1" class="solution-content">
+                <p>元の食塩の量：\(600 \times 0.04 = 24\) g</p>
+                <p>取り出した食塩水 \(x\) gに含まれる食塩：\(x \times 0.04 = 0.04x\) g</p>
+                <p>残っている食塩の量：</p>
+                <div class="calc-step">
+                    \(24 - 0.04x\) (g)
+                </div>
+                <span class="answer">答え: \((24 - 0.04x)\) g</span>
+            </div>
+
+            <div class="question">(2) このあと、容器に \(2x\) gの水を入れてかき混ぜたところ濃度が0.8%になった。\(x\) の値を求めなさい。</div>
+            <button class="solution-toggle" onclick="toggleSolution('challenge-1-2')">解答を表示</button>
+            <div id="solution-challenge-1-2" class="solution-content">
+                <p>水を入れた後の食塩水の量：\((600 - x) + 2x = 600 + x\) g</p>
+                <p>食塩の量は変わらず \(24 - 0.04x\) g。濃度が0.8%なので：</p>
+                <div class="calc-step">
+                    \(\dfrac{24 - 0.04x}{600 + x} = 0.008\)
+                </div>
+                <p>両辺に \((600 + x)\) をかける：</p>
+                <div class="calc-step">
+                    \(24 - 0.04x = 0.008(600 + x)\)<br>
+                    \(24 - 0.04x = 4.8 + 0.008x\)<br>
+                    \(19.2 = 0.048x\)<br>
+                    \(x = 400\)
+                </div>
+                <span class="answer">答え: \(x = 400\)</span>
+            </div>
+        </div>
+
+        <div class="problem-box">
+            <h3>【問題 2】（ラ・サール高）</h3>
+            <p>A, B, Cの容器にそれぞれ5%, 10%,
+                \(x\)%の食塩水がいくらかずつ入っている。AとBの食塩水をすべて混ぜると8%、BとCの食塩水をすべて混ぜると13%、AとCの食塩水をすべて混ぜると11%になる。まず、A,
+                Bに入っていた食塩水の量の比をもっとも簡単な整数の比で表し、そして \(x\) の値を求めなさい。</p>
+            <button class="solution-toggle" onclick="toggleSolution('challenge-2')">解答を表示</button>
+            <div id="solution-challenge-2" class="solution-content">
+                <p>A, B, Cに入っている食塩水の量をそれぞれ \(a\) g, \(b\) g, \(c\) gとする。</p>
+                <p><strong>A+B=8%</strong> の条件（てんびん法 / 内分比で考える）：</p>
+                <div class="calc-step">
+                    \(0.05a + 0.10b = 0.08(a + b)\)<br>
+                    \(0.05a + 0.10b = 0.08a + 0.08b\)<br>
+                    \(0.02b = 0.03a\)<br>
+                    \(\dfrac{a}{b} = \dfrac{2}{3}\)
+                </div>
+                <span class="answer">答え（比）: A : B = 2 : 3</span>
+
+                <hr>
+                <p><strong>\(x\)の値を求める：</strong></p>
+                <p>\(a = 2k, b = 3k\) とおく。</p>
+                <p><strong>B+C=13%</strong> の条件：</p>
+                <div class="calc-step">
+                    \(0.10 \times 3k + 0.01xc = 0.13(3k + c)\)<br>
+                    \(0.3k + 0.01xc = 0.39k + 0.13c\)<br>
+                    \(0.01xc - 0.13c = 0.09k\)<br>
+                    \(c(0.01x - 0.13) = 0.09k\) ……(i)
+                </div>
+                <p><strong>A+C=11%</strong> の条件：</p>
+                <div class="calc-step">
+                    \(0.05 \times 2k + 0.01xc = 0.11(2k + c)\)<br>
+                    \(0.1k + 0.01xc = 0.22k + 0.11c\)<br>
+                    \(0.01xc - 0.11c = 0.12k\)<br>
+                    \(c(0.01x - 0.11) = 0.12k\) ……(ii)
+                </div>
+                <p>(i) ÷ (ii)：</p>
+                <div class="calc-step">
+                    \(\dfrac{0.01x - 0.13}{0.01x - 0.11} = \dfrac{0.09}{0.12} = \dfrac{3}{4}\)<br><br>
+                    \(4(0.01x - 0.13) = 3(0.01x - 0.11)\)<br>
+                    \(0.04x - 0.52 = 0.03x - 0.33\)<br>
+                    \(0.01x = 0.19\)<br>
+                    \(x = 19\)
+                </div>
+                <span class="answer">答え: \(x = 19\)</span>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

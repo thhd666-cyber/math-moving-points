@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>規則性の問題 解説・解答</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: #2c3e50;
+        }
+
+        h1 {
+            text-align: center;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        .section {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .problem-box {
+            background-color: #e8f4fd;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .example-box {
+            background-color: #eafaf1;
+            border-left: 5px solid #2ecc71;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .question {
+            font-weight: bold;
+            margin-bottom: 10px;
+            margin-top: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .solution-toggle {
+            background-color: #34495e;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9em;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .solution-toggle:hover {
+            background-color: #2c3e50;
+        }
+
+        .solution-content {
+            display: none;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed #ddd;
+        }
+
+        .solution-content.show {
+            display: block;
+        }
+
+        .answer {
+            color: #e74c3c;
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+
+        .page-header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 15px;
+            font-size: 0.9em;
+        }
+
+        .nav-link {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .nav-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script>
+        function toggleSolution(id) {
+            var content = document.getElementById('solution-' + id);
+            if (content.classList.contains('show')) {
+                content.classList.remove('show');
+            } else {
+                content.classList.add('show');
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+    <h1>規則性の問題 解説・解答</h1>
+
+    <a href="index.html" class="nav-link">← メニューに戻る</a>
+
+    <!-- Page 204-205 -->
+    <div class="section">
+        <span class="page-header">Page 204-205：塾技99</span>
+        <h2>数列・規則性の問題の考え方①</h2>
+
+        <div class="example-box">
+            <h3>【ポイント】代表的な数列</h3>
+            <p><strong>1. 等差数列</strong><br>
+                差が一定の数列。その差のことを「公差」という。<br>
+                ① \(n\)番目の数 \(=\) 初項 \(+ (n-1) \times\) 公差<br>
+                ② 等差数列の和 \(=\) (初項 \(+\) 末項) \(\times\) 項数 \(\div 2\)</p>
+
+            <p><strong>2. フィボナッチ数列</strong><br>
+                \(n\)番目の数は、直前の2つの数、つまり \((n-1)\)番目と \((n-2)\)番目の和となる数列。</p>
+        </div>
+
+        <div class="problem-box">
+            <h3>【入試問題】等差数列の計算</h3>
+            <p>数の列 3, 5, 7, 9, 11, ... を考える。</p>
+
+            <div class="question">(1) 401はこの数の列の最初から数えて何番目になりますか。</div>
+            <button class="solution-toggle" onclick="toggleSolution('q-205-1')">解答を表示</button>
+            <div id="solution-q-205-1" class="solution-content">
+                <p>初項3, 公差2の等差数列。</p>
+                <p>\(3 + 2(n-1) = 401\)<br>
+                    \(2(n-1) = 398\)<br>
+                    \(n-1 = 199\)<br>
+                    \(n = 200\)</p>
+                <span class="answer">答え: 200番目</span>
+            </div>
+
+            <div class="question">(2) \(3+5+7+\dots+401\) を計算しなさい。</div>
+            <button class="solution-toggle" onclick="toggleSolution('q-205-2')">解答を表示</button>
+            <div id="solution-q-205-2" class="solution-content">
+                <p>公式：(初項 \(+\) 末項) \(\times\) 項数 \(\div 2\) を使います。</p>
+                <p>項数は(1)で求めた200。<br>
+                    \((3 + 401) \times 200 \div 2\)<br>
+                    \(= 404 \times 100\)<br>
+                    \(= 40400\)</p>
+                <span class="answer">答え: 40400</span>
+            </div>
+        </div>
+
+        <div class="problem-box">
+            <h3>【チャレンジ問題 1】群数列</h3>
+            <p>自然数を一列に並べ、次のような区切りを入れてグループに分ける。<br>
+                \(1 \mid 2, 3 \mid 4, 5, 6 \mid 7, 8, 9, 10 \mid \dots\)</p>
+
+            <div class="question">100番目のグループの先頭の数字はいくらか。</div>
+            <button class="solution-toggle" onclick="toggleSolution('c-205-1')">解答を表示</button>
+            <div id="solution-c-205-1" class="solution-content">
+                <p>第 \(n\) グループには \(n\) 個の数字が入っています。<br>
+                    100番目のグループの先頭の数は、99番目のグループまでの数字の総数に1を足した番目の数になります。</p>
+                <p>99グループまでの個数の和：<br>
+                    \(1 + 2 + 3 + \dots + 99 = \frac{(1+99) \times 99}{2} = 50 \times 99 = 4950\) 個</p>
+                <p>並んでいるのは自然数（1, 2, 3...）なので、4950番目の数は「4950」。<br>
+                    よって次の数は 4951。</p>
+                <span class="answer">答え: 4951</span>
+            </div>
+        </div>
+
+        <div class="problem-box">
+            <h3>【チャレンジ問題 2】平方数と奇数の和</h3>
+            <p>次のA, Bの式の①～④を満たす数を求めなさい。</p>
+
+            <div class="question">A. \(\fbox{②}^2 = 1 + 3 + 5 + \dots + 25\)</div>
+            <button class="solution-toggle" onclick="toggleSolution('c-205-2a')">解答を表示</button>
+            <div id="solution-c-205-2a" class="solution-content">
+                <p>奇数の和は平方数になる性質があります。<br>
+                    \(1 \dots 1^2\)<br>
+                    \(1+3=4 \dots 2^2\)<br>
+                    \(1+3+5=9 \dots 3^2\)</p>
+                <p>1から数えて \(n\) 個の奇数の和は \(n^2\) になります。<br>
+                    数列 \(1, 3, \dots, 25\) は、\(2n-1=25\) より \(n=13\) 個の奇数です。</p>
+                <p>よって \(13^2\) となります。</p>
+                <span class="answer">答え: ② = 13</span>
+            </div>
+
+            <div class="question">B. \(1+3+5+\dots+25 = (1+3+\dots+\fbox{③}) + (1+3+\dots+\fbox{④})\) <br>
+                ただし、③と④では④の方が大きい数とする。</div>
+            <button class="solution-toggle" onclick="toggleSolution('c-205-2b')">解答を表示</button>
+            <div id="solution-c-205-2b" class="solution-content">
+                <p>左辺は A より \(13^2 = 169\) です。<br>
+                    右辺は2つの平方数の和になります（\(m^2 + n^2\) の形）。</p>
+                <p>\(169 = 25 + 144 = 5^2 + 12^2\) という関係が成り立ちます（直角三角形の3辺 5:12:13）。</p>
+                <p>1つ目の項：\(5^2\) になるのは、奇数が5個の和。\((1+3+5+7+9)\) なので、末項は9。<br>
+                    よって ③ = 9。</p>
+                <p>2つ目の項：\(12^2\) になるのは、奇数が12個の和。\((1+3+\dots)\)。<br>
+                    \(n=12\) のとき、末項は \(2 \times 12 - 1 = 23\)。<br>
+                    よって ④ = 23。</p>
+                <span class="answer">答え: ③ = 9, ④ = 23</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 206-207 -->
+    <div class="section">
+        <span class="page-header">Page 206-207：塾技100</span>
+        <h2>数列・規則性の問題の考え方②：図形と規則</h2>
+
+        <div class="example-box">
+            <h3>【例題】白と黒のタイル</h3>
+            <p>同じ大きさの白と黒の正方形のタイルを規則正しく並べる（市松模様）。<br>
+                1番目：白1<br>
+                2番目：白2, 黒2<br>
+                3番目：白3, 黒6 ? (図より、全体正方形 \(n \times n\))</p>
+            <div class="question">(1) 6番目の黒のタイルの枚数</div>
+            <div class="question">(2) \(n\)番目の黒のタイルの枚数を \(n\) を使って表しなさい。</div>
+            <button class="solution-toggle" onclick="toggleSolution('ex-206')">解答を表示</button>
+            <div id="solution-ex-206" class="solution-content">
+                <p>全校のタイル枚数は \(n \times n = n^2\) 枚です。<br>
+                    白のタイルは対角線上に並んでおり、その枚数は \(n\) 枚です。</p>
+                <p>黒の枚数 \(=\) 全体 \(-\) 白<br>
+                    \(= n^2 - n\)</p>
+                <p>(1) 6番目のとき：\(6^2 - 6 = 36 - 6 = 30\) 枚</p>
+                <p>(2) \(n\)番目のとき：\(n^2 - n\) 枚</p>
+                <span class="answer">答え: (1) 30枚, (2) \(n^2-n\) 枚</span>
+            </div>
+        </div>
+
+        <div class="problem-box">
+            <h3>【入試問題】長方形の連結</h3>
+            <p>縦 \(a\) cm, 横 \(b\) cm の長方形を、互いの辺が重なるように等間隔で並べていく。<br>
+                （図：横一列に、少しずらして階段状あるいは凸凹に連結している）</p>
+
+            <div class="question">10番目に作った図形の周の長さを \(a, b\) を用いて表しなさい。</div>
+            <button class="solution-toggle" onclick="toggleSolution('p-207-1')">解答を表示</button>
+            <div id="solution-p-207-1" class="solution-content">
+                <p>規則性を調べます。<br>
+                    1番目：周の長さ \(2a + 2b\)<br>
+                    2番目：周の長さ \(4a + 2b\) （図形の増え方によるが、解説によると公差 \(2a\) の等差数列）<br>
+                    3番目：周の長さ \(6a + 2b\)</p>
+                <p>初項 \(2a+2b\), 公差 \(2a\) の等差数列になります。</p>
+                <p>\(n\)番目 \(= (2a+2b) + (n-1) \times 2a\)</p>
+                <p>10番目は \(n=10\) を代入。<br>
+                    \(2a + 2b + 9 \times 2a = 20a + 2b\)</p>
+                <span class="answer">答え: \((20a + 2b) \text{cm}\)</span>
+            </div>
+        </div>
+
+        <div class="problem-box">
+            <h3>【チャレンジ問題 1】十字型の図形</h3>
+            <p>1辺1cmの正方形のタイルを並べて図形を作る。<br>
+                1番目：1枚（1個）<br>
+                2番目：上下左右に1枚ずつ追加（計5枚 十字型）<br>
+                3番目：各先端にさらに1枚ずつ追加（計9枚）</p>
+
+            <div class="question">(1) 7番目の図形には、タイルは何枚必要か。</div>
+            <button class="solution-toggle" onclick="toggleSolution('c-207-1a')">解答を表示</button>
+            <div id="solution-c-207-1a" class="solution-content">
+                <p>枚数の規則性：<br>
+                    1番目：1<br>
+                    2番目：1 + 4 = 5<br>
+                    3番目：5 + 4 = 9<br>
+                    毎回4枚ずつ増える等差数列です（公差4）。</p>
+                <p>7番目 \(= 1 + 4 \times (7-1) = 1 + 24 = 25\)</p>
+                <span class="answer">答え: 25枚</span>
+            </div>
+
+            <div class="question">(2) \(n\)番目の図形の周の長さは何cmになるか。</div>
+            <button class="solution-toggle" onclick="toggleSolution('c-207-1b')">解答を表示</button>
+            <div id="solution-c-207-1b" class="solution-content">
+                <p>周の長さの規則性：<br>
+                    1番目：4cm（正方形1つ）<br>
+                    2番目：12cm（十字型。外周を数えると12辺）<br>
+                    3番目：20cm（さらに伸びた形）</p>
+                <p>差を見ると、\(12-4=8\), \(20-12=8\)。<br>
+                    初項4, 公差8の等差数列になります。</p>
+                <p>\(n\)番目の周の長さ \(= 4 + 8(n-1) = 4 + 8n - 8 = 8n - 4\)</p>
+                <span class="answer">答え: \((8n - 4) \text{cm}\)</span>
+            </div>
+        </div>
+
+        <div class="problem-box">
+            <h3>【チャレンジ問題 2】ピラミッド状の数の和</h3>
+            <p>最上段に1、2段目に1,1、3段目に1,2,1…と並ぶ（パスカルの三角形の和の規則）。</p>
+
+            <div class="question">\(n\)段目のすべての数の和が1024であるとき、\(n\)を求めなさい。</div>
+            <button class="solution-toggle" onclick="toggleSolution('c-207-2')">解答を表示</button>
+            <div id="solution-c-207-2" class="solution-content">
+                <p>各段の和の規則性を調べます。<br>
+                    1段目：1 (\(=2^0\))<br>
+                    2段目：1+1=2 (\(=2^1\))<br>
+                    3段目：1+2+1=4 (\(=2^2\))<br>
+                    4段目：1+3+3+1=8 (\(=2^3\))</p>
+                <p>\(n\)段目の和は \(2^{n-1}\) になります。</p>
+                <p>問題より、\(2^{n-1} = 1024\)。<br>
+                    \(1024 = 2^{10}\) です。</p>
+                <p>よって \(n-1 = 10\) となり、\(n = 11\)。</p>
+                <span class="answer">答え: 11段目</span>
+            </div>
+        </div>
+    </div>
+
+    <a href="index.html" class="nav-link">← メニューに戻る</a>
+
+</body>
+
+</html>
